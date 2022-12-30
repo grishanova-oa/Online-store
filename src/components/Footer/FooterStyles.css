@@ -1,0 +1,28 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    border-top: 2px solid #ef7d13;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+.footer-link__git {
+    padding: 15px 25px;
+    display: flex;
+    flex-direction: column;
+}
+.link-text {
+    color: #ef7d13;
+}
+.footer__logo {
+    display: flex;
+    background-image: url('../../assets/logo-footerjpg.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    margin-right: 20px;
+    font-size: 0;
+}

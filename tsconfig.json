@@ -4,6 +4,7 @@
       "allowSyntheticDefaultImports": true,
       "jsx": "react",
       "strict": true,
-      "noImplicitAny": true
+      "noImplicitAny": true,
+      "plugins": [{ "name": "typescript-plugin-css-modules" }]
     }
   }
