@@ -1,0 +1,10 @@
+
+.item__info_item {
+    font-size: .6rem;
+    color: wheat;
+}
+
+.item__info_item>span {
+    font-size: .6rem;
+    color: #bb954e;
+}

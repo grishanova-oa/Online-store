@@ -4,6 +4,7 @@ import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { tempCartData } from './tempData';
 import './styles.css';
+import { Main } from './components/Pages/Main/Main';
 
 // const temp = {
 //   'qwe43': 1
@@ -31,6 +32,7 @@ export const App: React.FC = () => {
         cartItemsCount={cartItemsCount}
         onChangeCartCount={onChangeCartCount}
       />
+      <Main />
       <Footer />
     </div>
   );
