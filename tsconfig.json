@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+      "noUnusedLocals": false,
+      "noUnusedParameters": false,
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
       "jsx": "react",
