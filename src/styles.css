@@ -1,17 +1,21 @@
+html,
+body,
+.root {
+    height: 100%;
+}
 body{
     max-width: 100%;
-    min-height: 100vh;
-    color: #ef7d13;
     margin: 0 auto;
     font-family: 'Philosopher', sans-serif;
     font-style: normal;
     display: flex;
     flex-direction: column;
+    background: url('./assets/bgr.jpg') center no-repeat;
+    background-size: cover;
 }
 p, 
 h1,
 h2,
-h3,
 h4, 
 li,
 ul ,
@@ -38,4 +42,16 @@ a {
 *:after {
     box-sizing: border-box;
     scroll-behavior: smooth;
+}
+#root {
+    height: 100%;
+}
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+main {
+    flex: 1 1 auto;
+
 }
