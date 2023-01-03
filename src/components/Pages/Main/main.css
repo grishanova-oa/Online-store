@@ -1,0 +1,14 @@
+
+.main {
+  min-height: 85vh;
+  width: 100%;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+}
+
+.main__content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

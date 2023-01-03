@@ -17,7 +17,10 @@ li,
 ul ,
 body {
     margin: 0;
-    padding: 0; 
+    padding: 0;
+    background-image: url('./assets/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 button {
     padding: 0;
