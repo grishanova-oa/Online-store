@@ -7,7 +7,7 @@ interface ICartItemsInfo {
   discount: number;
   rating: number;
   stock: number;
-  price: number;
+  priceAmount: number;
   url: string;
 }
 export const CartItemsInfo = ({
@@ -17,7 +17,7 @@ export const CartItemsInfo = ({
   url,
   description,
   stock,
-  price,
+  priceAmount,
 }: ICartItemsInfo) => {
   return (
     <div className="items-info">
@@ -37,7 +37,7 @@ export const CartItemsInfo = ({
           Stock<span>{stock}</span>
         </p>
         <div className="item__prise">
-          €<span>{price}</span>
+          €<span>{priceAmount}</span>
         </div>
       </div>
     </div>
