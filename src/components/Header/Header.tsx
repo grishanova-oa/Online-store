@@ -1,15 +1,18 @@
 import React from 'react';
-import { Cart } from '../Cart/Cart';
+import { Cart } from '../Cart';
 import { Logo } from '../Logo';
 import { TotalPrice } from '../TotalPrice';
 import './HeaderStyles.css';
 
-export const Header = () => {
+interface ITotalAmount {
+  totalAmount: number;
+}
+export const Header = ({ totalAmount }: ITotalAmount) => {
   return (
-    <div className="header">
+    <header className="header">
       <Logo />
-      <TotalPrice />
+      <TotalPrice totalAmount={totalAmount} />
       <Cart />
-    </div>
+    </header>
   );
 };

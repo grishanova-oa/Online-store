@@ -1,0 +1,9 @@
+.container-items {
+    display: flex;
+    background-color: rgba(39,47,51, 0.5);
+    padding: 2px 15px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #000;
+
+}

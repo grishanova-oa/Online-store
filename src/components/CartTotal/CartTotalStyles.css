@@ -1,0 +1,15 @@
+.total-amount {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #181a1c;
+    height: 60px;
+    width: 350px;
+    padding: 15px 25px;
+    border-bottom: 1px solid #ef7d13;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #ffebcd;
+    font-size: 36px;
+}
