@@ -1,4 +1,14 @@
-body{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: calc(.2rem + 1vw);
+    color: orange;
+    font-family: Philosopher,sans-serif;
+    word-wrap: break-word;
+}
+
+/* body{
     max-width: 100%;
     min-height: 100vh;
     color: #ef7d13;
@@ -7,7 +17,10 @@ body{
     font-style: normal;
     display: flex;
     flex-direction: column;
-}
+    background-image: url('./assets/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
 p, 
 h1,
 h2,
@@ -18,9 +31,6 @@ ul ,
 body {
     margin: 0;
     padding: 0;
-    background-image: url('./assets/bg.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 button {
     padding: 0;
@@ -41,4 +51,26 @@ a {
 *:after {
     box-sizing: border-box;
     scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #181a1c;
+    border-radius: 20px;
+    border: 2px solid orange;
+}
+::-webkit-scrollbar-track {
+    background: orange;
+}
+
+body{
+    background-image: url('./assets/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.App {
+    display: block;
+    min-height: 100vh;
+    width: 100%;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import FilterButton from '../../Filters/FilterButton';
 import FilterSelect from '../../Filters/FilterSelect';
-import './filters.css';
+import classes from './Filters.module.css';
 
 export const Filters: React.FC = () => {
   const propsFilterSelect = {

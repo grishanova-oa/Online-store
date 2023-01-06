@@ -12,14 +12,17 @@ export interface IProducts {
   images: string[];
 }
 
+export interface ISelect {
+  value: string;
+  name: string;
+}
+
 export interface ICatalog {
   products: IProducts[];
   total: number;
   skip: number;
   limit: number;
 }
-
-// export type TypeOfProducts = { key: string: T};
 
 export type TypeOfQuerySelectProduct = {
   select: string[];

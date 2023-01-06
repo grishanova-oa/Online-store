@@ -1,6 +1,6 @@
 import React from 'react';
 import './filterSelect.css';
-import { catalog } from '../../modules/catalog';
+// import { catalog } from '../../API/catalog';
 
 interface IFilterSelect {
   title: string;

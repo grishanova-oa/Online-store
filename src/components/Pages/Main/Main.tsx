@@ -1,31 +1,47 @@
-import React, { useState } from 'react';
-import { Filters } from './Filters';
-import { Product } from './Product';
-import { catalog } from '../../../modules/catalog';
-// import { getProductsListProps } from '../../../modules/product';
-import { IProducts } from '../../../modules/types';
-import './main.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route, useSearchParams, useParams } from 'react-router-dom';
+import { Filters } from '../Products/Filters';
+import { ProductList } from './ProductList';
+import { Products } from '../Products/Products';
+import { Error404 } from '../Error/Error';
+import classes from './Main.module.css';
+// import { IProducts } from '../../../modules/types';
 
-type tp = {
-  id: number;
-  name: string;
-};
+// type TypeOfMainProps = {
+//   productList: IProducts[];
+//   sortSelect: string;
+//   onChangeSort: (sort: string) => void;
+// };
 
-export const Main: React.FC = () => {
-  const products: IProducts[] = [...catalog.products];
-  // console.log(products);
-  const productList: IProducts[] = products.map((e) => e);
-
-  const [propsProductList, setProductList] = useState(productList);
+export const Main = (): JSX.Element => {
+  // const { productList } = props;
+  // const { sortSelect } = props;
+  // const { onChangeSort } = props;
 
   return (
-    <main className="main">
-      <section className="main__content">
-        <Filters />
-        <Product propsProductList={propsProductList} />
-      </section>
+    <main className={classes.main}>
+      <Routes>
+        <Route path="/" element={<Products />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+      {/* <Filters />
+      <ProductList
+        productList={productList}
+        sortSelect={sortSelect}
+        onChangeSort={onChangeSort}
+      /> */}
     </main>
+    // <section className={classes.main__content}>
+    //   <Routes>
+    //     <Route path="/" element={<Products />} />
+    //     <Route path="*" element={<Error404 />} />
+    //   </Routes>
+    //   {/* <Filters />
+    //   <ProductList
+    //     productList={productList}
+    //     sortSelect={sortSelect}
+    //     onChangeSort={onChangeSort}
+    //   /> */}
+    // </section>
   );
 };
-
-export default Main;

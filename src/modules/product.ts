@@ -1,4 +1,48 @@
+import { catalog } from './catalog-products';
 import { IProducts } from './types';
+
+export class Product {
+  static getProduct() {
+    const products = [...catalog.products];
+    return products;
+  }
+
+  static sortProductList(productList: IProducts[], sort: string) {
+    const eSort = ['price', 'rating', 'discountPercentage'];
+
+    if (!sort) {
+      return productList;
+    }
+
+    const sortProp = eSort.find((e) => sort.includes(e)) as keyof IProducts;
+    const orderSort = sort.replace(sortProp, '');
+
+    const listSort = [...productList].sort(
+      (a, b) => (a[sortProp] as number) - (b[sortProp] as number)
+    );
+    if (orderSort === 'DESC') {
+      listSort.reverse();
+    }
+
+    return listSort;
+  }
+}
+
+// export function sortProductList(productList: IProducts[], sort: string) {
+//   const eSort = ['price', 'rating', 'discount'];
+
+//   const sortProp = eSort.find((e) => sort.includes(e)) as keyof IProducts;
+//   const orderSort = sort.replace(sortProp, '');
+
+//   const listSort = [...productList].sort(
+//     (a, b) => (a[sortProp] as number) - (b[sortProp] as number)
+//   );
+//   if (orderSort === 'DESC') {
+//     listSort.reverse();
+//   }
+
+//   return listSort;
+// }
 
 // export function getProductsList(products: IProducts[], queryProps: string ): string[] {
 
@@ -28,11 +72,11 @@ import { IProducts } from './types';
 // 1
 // RootActionTypes[keyVlue]
 
-export function getProductsListProps(products: IProducts[], queryProps: keyof IProducts): void {
-  for (let i = 0; i <= products.length; i += 1) {
-    console.log(products[i][queryProps]);
-  }
-}
+// export function getProductsListProps(products: IProducts[], queryProps: keyof IProducts): void {
+//   for (let i = 0; i <= products.length; i += 1) {
+//     console.log(products[i][queryProps]);
+//   }
+// }
 
 // products.reduce((selectArray, e) => {
 //   if (selectArray.includes(e[queryProps])) {
