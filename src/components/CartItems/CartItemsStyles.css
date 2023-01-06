@@ -3,7 +3,7 @@
     background-color: rgba(39,47,51, 0.5);
     padding: 2px 15px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     border: 1px solid #000;
 
 }

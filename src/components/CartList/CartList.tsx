@@ -22,12 +22,13 @@ export const CartList = ({ cartData, cartItemsCount, onChangeCartCount }: ICartI
   return (
     <div className="cart-list">
       <CartListHeader />
-      {cartData.map((item) => (
+      {cartData.map((item, index) => (
         <CartItems
           count={cartItemsCount[item.id]}
           onChangeCartCount={onChangeCartCount}
           item={item}
           key={item.id}
+          index={index + 1}
         />
       ))}
     </div>

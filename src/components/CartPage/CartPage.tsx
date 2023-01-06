@@ -14,11 +14,25 @@ interface ICartData {
   thumbnail: string;
 }
 interface ICartItems {
+  deleteDiscount: (value: string) => void;
+  discountList: string[];
+  totalAmount: number;
+  totalItemCount: number;
   cartData: ICartData[];
   cartItemsCount: Record<string, number>;
   onChangeCartCount: (id: number, price: number, isAdd: boolean) => void;
+  addDiscount: (value: string) => void;
 }
-export const CartPage = ({ cartData, cartItemsCount, onChangeCartCount }: ICartItems) => {
+export const CartPage = ({
+  deleteDiscount,
+  discountList,
+  totalItemCount,
+  totalAmount,
+  cartData,
+  cartItemsCount,
+  onChangeCartCount,
+  addDiscount,
+}: ICartItems) => {
   return (
     <section className="main__cart">
       {/* <CartEmpty /> */}
@@ -27,7 +41,13 @@ export const CartPage = ({ cartData, cartItemsCount, onChangeCartCount }: ICartI
         cartItemsCount={cartItemsCount}
         onChangeCartCount={onChangeCartCount}
       />
-      <CartTotal total={1000} />
+      <CartTotal
+        deleteDiscount={deleteDiscount}
+        addDiscount={addDiscount}
+        totalItemCount={totalItemCount}
+        totalAmount={totalAmount}
+        discountList={discountList}
+      />
     </section>
   );
 };

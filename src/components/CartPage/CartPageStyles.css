@@ -1,6 +1,6 @@
 .main__cart {
     display: flex;
-    /* flex-direction: column; */
+    justify-content: space-around;
     gap: 50px;
     margin: 0 auto;
     flex: 1 0 auto;

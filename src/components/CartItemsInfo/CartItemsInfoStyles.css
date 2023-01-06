@@ -1,15 +1,16 @@
 .items-info {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    width: 75%;
 }
 .items-info__img {
-    width: 15%;
-    height: 100%;
+    width: 150px;
+    height: 80px;
     border-radius: 0.5rem;
-    border: 0.2px solid orange;
+    border: 0.2px solid #ef7d13;
 }
-h3 {
+.items-info__details  h3 {
     font-size: 32px;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -17,6 +18,7 @@ h3 {
     border-bottom: 3px solid #ffebcd;
 }
 .items-info__details {
+    width: 80%;
     font-size: 24px;
     display: flex;
     flex-direction: column;

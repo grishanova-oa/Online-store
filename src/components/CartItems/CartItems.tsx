@@ -15,15 +15,17 @@ interface ICartItems {
   thumbnail: string;
 }
 interface ITypes {
+  index: number;
   count: number;
   item: ICartItems;
   onChangeCartCount: (id: number, price: number, isAdd: boolean) => void;
 }
 
-export const CartItems = ({ count, item, onChangeCartCount }: ITypes) => {
+export const CartItems = ({ index, count, item, onChangeCartCount }: ITypes) => {
+  // Rename
   return (
     <div className="container-items">
-      <CartItemsNumber />
+      <CartItemsNumber index={index} />
       <CartItemsInfo
         title={item.title}
         stock={item.stock}
@@ -33,7 +35,12 @@ export const CartItems = ({ count, item, onChangeCartCount }: ITypes) => {
         priceAmount={item.price * count}
         url={item.thumbnail}
       />
-      <CartItemAmount id={item.id} price={item.price} onChangeCartCount={onChangeCartCount} />
+      <CartItemAmount
+        count={count}
+        id={item.id}
+        price={item.price}
+        onChangeCartCount={onChangeCartCount}
+      />
     </div>
   );
 };

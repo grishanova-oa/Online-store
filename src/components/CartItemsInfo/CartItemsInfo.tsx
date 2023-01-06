@@ -36,9 +36,9 @@ export const CartItemsInfo = ({
         <p>
           Stock<span>{stock}</span>
         </p>
-        <div className="item__prise">
+        {/* <div className="item__prise">
           €<span>{priceAmount}</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

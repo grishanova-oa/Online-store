@@ -1,6 +1,6 @@
 import React from 'react';
 import './CartItemsNumberStyles.css';
 
-export const CartItemsNumber = () => {
-  return <div className="items-num">1</div>;
+export const CartItemsNumber = ({ index }: { index: number }) => {
+  return <div className="items-num">{index}</div>;
 };
