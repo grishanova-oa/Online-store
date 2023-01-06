@@ -6,13 +6,14 @@ import './HeaderStyles.css';
 
 interface ITotalAmount {
   totalAmount: number;
+  totalItemCount: number;
 }
-export const Header = ({ totalAmount }: ITotalAmount) => {
+export const Header = ({ totalItemCount, totalAmount }: ITotalAmount) => {
   return (
     <header className="header">
       <Logo />
       <TotalPrice totalAmount={totalAmount} />
-      <Cart />
+      <Cart totalItemCount={totalItemCount} />
     </header>
   );
 };

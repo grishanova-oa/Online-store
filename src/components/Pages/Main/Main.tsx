@@ -13,7 +13,7 @@ type tp = {
 
 export const Main: React.FC = () => {
   const products: IProducts[] = [...catalog.products];
-  // console.log(products);
+  
   const productList: IProducts[] = products.map((e) => e);
 
   const [propsProductList, setProductList] = useState(productList);
