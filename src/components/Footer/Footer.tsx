@@ -3,7 +3,7 @@ import './FooterStyles.css';
 
 export const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="footer-link__git">
         <a
           href="https://github.com/grishanova-oa"
@@ -13,12 +13,7 @@ export const Footer = () => {
         >
           GIt Author Olga
         </a>
-        <a
-          href="https://github.com/grishanova-oa"
-          target="_blank"
-          className="link-text"
-          rel="noreferrer"
-        >
+        <a href="https://github.com/khomdv" target="_blank" className="link-text" rel="noreferrer">
           GIt Author Dzmitry
         </a>
       </div>
@@ -26,6 +21,6 @@ export const Footer = () => {
       <a className="footer__logo" href="https://rs.school/js/">
         RSS
       </a>
-    </div>
+    </footer>
   );
 };

@@ -2,8 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
+    background-color: #181a1c;
     border-bottom: 2px solid #ef7d13;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+    flex: 0 0 auto;
+    padding-top: 10px;
+
 }

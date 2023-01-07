@@ -1,0 +1,15 @@
+.ful-price {
+    margin-top: 20px;
+    padding: 10px 0 10px 40px;
+    text-align: left;
+    padding-right: 10px;
+    font-size: 32px;
+    color: #ef7d13;
+    border-bottom: 3px solid #ffebcd;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.through {
+    text-decoration: line-through;
+}

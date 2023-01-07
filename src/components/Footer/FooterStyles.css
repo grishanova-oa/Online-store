@@ -1,19 +1,23 @@
 .footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    background-color: black;
+    background-color: #181a1c;;
     border-top: 2px solid #ef7d13;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+    flex: 0 0 auto;
 }
 .footer-link__git {
     padding: 15px 25px;
     display: flex;
     flex-direction: column;
 }
-.link-text {
+.link-text,
+.footer p {
     color: #ef7d13;
+    text-decoration: none;
+    
 }
 .footer__logo {
     display: flex;

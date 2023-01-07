@@ -1,26 +1,28 @@
+html,
+body,
+.root {
+    min-height: 100vh;
+
+}
 body{
     max-width: 100%;
-    min-height: 100vh;
-    color: #ef7d13;
     margin: 0 auto;
     font-family: 'Philosopher', sans-serif;
     font-style: normal;
     display: flex;
     flex-direction: column;
+    background: url('./assets/bgr.jpg') center no-repeat;
+    background-size: cover;
 }
 p, 
 h1,
 h2,
-h3,
 h4, 
 li,
 ul ,
 body {
     margin: 0;
     padding: 0;
-    background-image: url('./assets/bg.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 button {
     padding: 0;
@@ -41,4 +43,18 @@ a {
 *:after {
     box-sizing: border-box;
     scroll-behavior: smooth;
+}
+#root {
+    height: 100%;
+}
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+
+}
+main {
+    flex: 1 1 auto;
+
 }

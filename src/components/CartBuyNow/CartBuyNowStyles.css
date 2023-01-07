@@ -1,0 +1,21 @@
+.byw-now__btn {
+    text-transform: uppercase;
+    width: 50%;
+    font-size: 28px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    padding: 10px 0;
+    background: #9a3535;
+    color: #ffebcd;
+    border: 2px solid #ef7d13;
+    border-radius: 5px;
+    margin: 30px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.byw-now__btn:hover {
+    transform: scale(1.03);
+    background: #ffebcd;
+    color: #9a3535;
+}

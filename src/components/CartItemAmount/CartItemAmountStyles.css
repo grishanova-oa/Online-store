@@ -1,0 +1,29 @@
+.item-amount {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+
+}
+.item-amount__btn-plus,
+.item-amount__btn-minus {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #ffebcd;
+    border-radius: 50%;
+    font-size: 34px;
+    font-weight: 600;
+    color: #ffebcd;
+
+    cursor: pointer;
+}
+.item-amount span {
+    font-weight: 600;
+    font-size: 32px;
+    text-align: center;
+    padding: 0 15px;
+    color: #ffebcd;
+}
