@@ -3,10 +3,9 @@ import './styles.css';
 import { CartPage } from './components/CartPage';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-import { tempCartData } from './tempData';
 import { Main } from './components/Pages/Main/Main';
 import { IProducts } from './modules/types';
-// import { catalog } from './modules/catalog';
+import { catalog } from './modules/catalog';
 
 interface ICartItemCount {
   [key: string]: number;
@@ -16,8 +15,7 @@ const getTotalItemCount = (arrItemCount: number[]) => {
 };
 export const App: React.FC = () => {
   const [totalAmount, setTotalAmount] = useState(0);
-  const [cartData, setCartData] = useState([...tempCartData]); // [...catalog.products]
-  const [totalItemCount, setTotalItemCount] = useState(0);
+  const [cartData, setCartData] = useState<IProducts[]>([]);
   const [cartItemsCount, setCartItemsCount] = useState<ICartItemCount>({});
   const [discountList, setCountAppliedDiscount] = useState<string[]>([]);
   const [showCart, setShowCart] = useState<boolean>(false);
@@ -41,7 +39,7 @@ export const App: React.FC = () => {
     let newTotalAmount = totalAmount;
     const newCartItemsCount = { ...cartItemsCount };
     const itemCount = newCartItemsCount[id];
-    const currentItem = cartData.find((elem: IProducts) => elem.id === id);
+    const currentItem = catalog.products.find((elem: IProducts) => elem.id === id);
 
     if (itemCount === currentItem?.stock) {
       return;
@@ -79,6 +77,18 @@ export const App: React.FC = () => {
     setCartItemsCount(newCartItemsCount);
     setTotalAmount(newTotalAmount);
   };
+
+  const addToCart = (propsProductItem: IProducts, isAdd: boolean) => {
+    const newCArtData = [...cartData];
+    newCArtData.push(propsProductItem);
+
+    setCartData(newCArtData);
+    if (isAdd) {
+      addCountAndAmount(propsProductItem.id, propsProductItem.price);
+    } else {
+      removeCountAndAmount(propsProductItem.id, propsProductItem.price);
+    }
+  };
   const onChangeCartCount = (id: number, price: number, isAdd: boolean) => {
     if (isAdd) {
       addCountAndAmount(id, price);
@@ -105,7 +115,7 @@ export const App: React.FC = () => {
           addDiscount={addDiscount}
         />
       )}
-      {!showCart && <Main />}
+      {!showCart && <Main cartData={cartData} addToCart={addToCart} />}
       <Footer />
     </div>
   );

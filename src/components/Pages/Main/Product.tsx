@@ -4,11 +4,16 @@ import './product.css';
 import { IProducts } from '../../../modules/types';
 
 type IProductProps = {
+  cartData: IProducts[];
   propsProductList: IProducts[];
+  addToCart: (value: IProducts, isInCart: boolean) => void;
 };
 
 export const Product = (props: IProductProps): JSX.Element => {
-  const { propsProductList } = props;
+  const { cartData, addToCart, propsProductList } = props;
+  const getIsInCart = (id: number) => {
+    return cartData.find((item) => item.id === id);
+  };
 
   return (
     <section className="product">
@@ -16,7 +21,12 @@ export const Product = (props: IProductProps): JSX.Element => {
       <div className="product__list">
         {propsProductList.map(
           (propsProductItem: IProducts): JSX.Element => (
-            <ProductItem propsProductItem={propsProductItem} key={propsProductItem.id} />
+            <ProductItem
+              isInCart={Boolean(getIsInCart(propsProductItem.id))}
+              addToCart={addToCart}
+              propsProductItem={propsProductItem}
+              key={propsProductItem.id}
+            />
           )
         )}
       </div>

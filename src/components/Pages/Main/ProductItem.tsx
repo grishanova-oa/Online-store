@@ -4,11 +4,14 @@ import { IProducts } from '../../../modules/types';
 import { ProductItemInfo } from './ProductItemInfo';
 
 type TypeOfPropsProductItem = {
+  // eslint-disable-next-line react/require-default-props
+  isInCart?: boolean;
   propsProductItem: IProducts;
+  addToCart: (value: IProducts, isInCart: boolean) => void;
 };
 
 export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
-  const { propsProductItem } = props;
+  const { isInCart, addToCart, propsProductItem } = props;
 
   return (
     <section className="product__item">
@@ -30,7 +33,9 @@ export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
           </div>
         </div>
         <div className="item__button">
-          <button type="button">Check</button>
+          <button type="button" onClick={() => addToCart(propsProductItem, !isInCart)}>
+            {isInCart ? 'Delete' : 'Add to cart'}
+          </button>
           <button type="button">Details</button>
         </div>
       </div>
