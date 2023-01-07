@@ -1,8 +1,9 @@
 import React from 'react';
+import { CartEmpty } from '../CartEmpty';
 import { CartList } from '../CartList';
 import { CartTotal } from '../CartTotal';
 import './CartPageStyles.css';
-// import { CartEmpty } from '../CartEmpty';
+
 interface ICartData {
   id: number;
   title: string;
@@ -35,19 +36,24 @@ export const CartPage = ({
 }: ICartItems) => {
   return (
     <section className="main__cart">
-      {/* <CartEmpty /> */}
-      <CartList
-        cartData={cartData}
-        cartItemsCount={cartItemsCount}
-        onChangeCartCount={onChangeCartCount}
-      />
-      <CartTotal
-        deleteDiscount={deleteDiscount}
-        addDiscount={addDiscount}
-        totalItemCount={totalItemCount}
-        totalAmount={totalAmount}
-        discountList={discountList}
-      />
+      {cartData.length ? (
+        <>
+          <CartList
+            cartData={cartData}
+            cartItemsCount={cartItemsCount}
+            onChangeCartCount={onChangeCartCount}
+          />
+          <CartTotal
+            deleteDiscount={deleteDiscount}
+            addDiscount={addDiscount}
+            totalItemCount={totalItemCount}
+            totalAmount={totalAmount}
+            discountList={discountList}
+          />
+        </>
+      ) : (
+        <CartEmpty />
+      )}
     </section>
   );
 };

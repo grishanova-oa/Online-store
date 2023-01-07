@@ -18,6 +18,7 @@ interface ICartItems {
   cartItemsCount: Record<string, number>;
   onChangeCartCount: (id: number, price: number, isAdd: boolean) => void;
 }
+
 export const CartList = ({ cartData, cartItemsCount, onChangeCartCount }: ICartItems) => {
   return (
     <div className="cart-list">

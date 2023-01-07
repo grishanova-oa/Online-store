@@ -3,11 +3,14 @@ import './CartStyles.css';
 
 interface ITotalItemCont {
   totalItemCount: number;
+  changeShowCart: (value: boolean) => void;
 }
-export const Cart = ({ totalItemCount }: ITotalItemCont) => {
+export const Cart = ({ changeShowCart, totalItemCount }: ITotalItemCont) => {
+  const showCart = () => changeShowCart(true);
+
   return (
-    <div className="cart">
+    <button className="cart" aria-label="btn-cart" type="button" onClick={showCart}>
       <div className="count-product">{totalItemCount}</div>
-    </div>
+    </button>
   );
 };

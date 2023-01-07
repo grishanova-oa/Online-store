@@ -7,13 +7,14 @@ import './HeaderStyles.css';
 interface ITotalAmount {
   totalAmount: number;
   totalItemCount: number;
+  changeShowCart: (value: boolean) => void;
 }
-export const Header = ({ totalItemCount, totalAmount }: ITotalAmount) => {
+export const Header = ({ changeShowCart, totalItemCount, totalAmount }: ITotalAmount) => {
   return (
     <header className="header">
-      <Logo />
+      <Logo changeShowCart={changeShowCart} />
       <TotalPrice totalAmount={totalAmount} />
-      <Cart totalItemCount={totalItemCount} />
+      <Cart changeShowCart={changeShowCart} totalItemCount={totalItemCount} />
     </header>
   );
 };

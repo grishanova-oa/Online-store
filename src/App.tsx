@@ -20,6 +20,11 @@ export const App: React.FC = () => {
   const [totalItemCount, setTotalItemCount] = useState(0);
   const [cartItemsCount, setCartItemsCount] = useState<ICartItemCount>({});
   const [discountList, setCountAppliedDiscount] = useState<string[]>([]);
+  const [showCart, setShowCart] = useState<boolean>(false);
+
+  const changeShowCart = (value: boolean) => {
+    setShowCart(value);
+  };
 
   const deleteDiscount = (name: string) => {
     const newDiscountLIst = discountList.filter((item) => name !== item);
@@ -86,18 +91,21 @@ export const App: React.FC = () => {
       <Header
         totalItemCount={getTotalItemCount(Object.values(cartItemsCount))}
         totalAmount={totalAmount}
+        changeShowCart={changeShowCart}
       />
-      <CartPage
-        deleteDiscount={deleteDiscount}
-        discountList={discountList}
-        totalItemCount={getTotalItemCount(Object.values(cartItemsCount))}
-        totalAmount={totalAmount}
-        cartData={cartData}
-        cartItemsCount={cartItemsCount}
-        onChangeCartCount={onChangeCartCount}
-        addDiscount={addDiscount}
-      />
-      <Main />
+      {showCart && (
+        <CartPage
+          deleteDiscount={deleteDiscount}
+          discountList={discountList}
+          totalItemCount={getTotalItemCount(Object.values(cartItemsCount))}
+          totalAmount={totalAmount}
+          cartData={cartData}
+          cartItemsCount={cartItemsCount}
+          onChangeCartCount={onChangeCartCount}
+          addDiscount={addDiscount}
+        />
+      )}
+      {!showCart && <Main />}
       <Footer />
     </div>
   );
