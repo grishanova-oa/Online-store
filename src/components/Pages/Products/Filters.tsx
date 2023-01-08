@@ -1,21 +1,26 @@
 import React from 'react';
-import FilterButton from '../../Filters/FilterButton';
-import FilterSelect from '../../Filters/FilterSelect';
+import FilterButton from '../../FiltersSelect/FilterButton';
+import { FilterSelect } from '../../FiltersSelect/FilterSelect';
+import { IElemFilterSelect } from '../../../modules/types';
 import classes from './Filters.module.css';
 
-export const Filters: React.FC = () => {
-  const propsFilterSelect = {
-    title: 'catalog',
-    filter: 'catalog',
-  };
+type TypeOfFilter = {
+  filterCategory: IElemFilterSelect;
+  filterBrand: IElemFilterSelect;
+};
+
+export const Filters = (props: TypeOfFilter): JSX.Element => {
+  const { filterCategory } = props;
+  const { filterBrand } = props;
 
   return (
-    <section className="filters">
-      <div className="filters__reset">
+    <section className={classes.Filters}>
+      <div className={classes.Filters__reset}>
         <FilterButton title="Reset Filters" />
         <FilterButton title="Copy Link" />
       </div>
-      <FilterSelect propsFilterSelect={propsFilterSelect} />
+      <FilterSelect filterSelect={filterCategory} />
+      <FilterSelect filterSelect={filterBrand} />
       {/* <FiltersSlider /> */}
     </section>
   );

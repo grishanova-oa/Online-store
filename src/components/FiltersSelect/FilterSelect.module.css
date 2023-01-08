@@ -13,7 +13,7 @@
   border-bottom: 1px solid orange;
 }
 
-.filter__select_list {
+.filter__list {
   height: 10rem;
   overflow: hidden;
   overflow-y: auto;

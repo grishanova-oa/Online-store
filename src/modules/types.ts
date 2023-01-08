@@ -24,19 +24,29 @@ export interface ICatalog {
   limit: number;
 }
 
-export type TypeOfQuerySelectProduct = {
-  select: string[];
-};
-
-export interface IQuery {
-  category: string;
-}
-
 export interface IFilterSelect {
-  title: string;
-  filter: string;
+  name: string;
+  isCheck: boolean;
+  available: number;
+  total: number;
 }
 
-export interface IPropisFilterSelect {
-  propsFilterSelect: IFilterSelect;
+export interface IElemFilterSelect {
+  title: string;
+  listFilter: IFilterSelect[];
+  onCheckInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+// export type TypeOfQuerySelectProduct = {
+//   select: string[];
+// };
+// export interface IQuery {
+//   category: string;
+// }
+// export interface IFilterSelect {
+//   title: string;
+//   filter: string;
+// }
+// export interface IPropisFilterSelect {
+//   propsFilterSelect: IFilterSelect;
+// }

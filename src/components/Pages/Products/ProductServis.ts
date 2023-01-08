@@ -1,10 +1,35 @@
 import { catalog } from '../../../modules/catalog-products';
 import { IProducts } from '../../../modules/types';
 
+interface IAcc {
+  [key: string]: number;
+}
+
+interface IFilter {
+  name: string;
+  isCheck: boolean;
+  available: number;
+  total: number;
+}
+
 export class CSProduct {
   static getProduct() {
     const products = [...catalog.products];
     return products;
+  }
+
+  static getProductProperty(productsList: IProducts[], property: keyof IProducts) {
+    const arr: IFilter[] = [];
+    for (let i = 0; i < productsList.length; i += 1) {
+      const el = productsList[i][property] as string;
+      const found = arr.find((element) => element.name.toUpperCase() === el.toUpperCase());
+      if (found === undefined) {
+        arr.push({ name: el, isCheck: false, available: 0, total: 1 });
+      } else {
+        found.total += 1;
+      }
+    }
+    return arr;
   }
 
   static sortProductsList(productsList: IProducts[], sort: string) {
