@@ -1,0 +1,25 @@
+.info-block {
+    margin: 0 auto;
+    width: 80%;
+    border: 2px solid #ef7d13   ;
+    border-radius: 1rem;
+    background: rgba(24,26,28,.5);
+    overflow: hidden;
+}
+.info-title {
+    width: 100%;
+    text-align: center;
+    background: #181a1c;
+    border-bottom: 2px solid #ef7d13;
+}
+.info-title h2 {
+    font-size: 30px;
+    padding: 10px;
+    text-transform: uppercase;
+    color: #ef7d13;
+}
+.info-block__data {
+    padding: 20px;
+    display: flex;
+    width: 100%;
+}

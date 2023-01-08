@@ -1,0 +1,1 @@
+export { InfoAddToCart } from './InfoAddToCart';
