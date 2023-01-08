@@ -1,0 +1,1 @@
+export { InfoProductNav } from './InfoProductNav';

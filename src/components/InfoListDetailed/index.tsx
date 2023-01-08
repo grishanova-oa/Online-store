@@ -1,0 +1,1 @@
+export { InfoListDetailed } from './InfoListDetailed';
