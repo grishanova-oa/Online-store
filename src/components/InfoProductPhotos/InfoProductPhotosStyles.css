@@ -1,0 +1,17 @@
+.photo-slides {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    gap: 20px;
+}
+.slides__img {
+    border-radius: 10px;
+    border: 1px solid #ef7d13;
+    width: 80%;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.slides__img:hover {
+    transform: scale(1.05);
+}
