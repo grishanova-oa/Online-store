@@ -6,6 +6,7 @@ import { Header } from './components/Header';
 import { Main } from './components/Pages/Main/Main';
 import { IProducts } from './modules/types';
 import { catalog } from './modules/catalog';
+import { InfoProduct } from './components/InfoProduct';
 
 interface ICartItemCount {
   [key: string]: number;
@@ -103,6 +104,7 @@ export const App: React.FC = () => {
         totalAmount={totalAmount}
         changeShowCart={changeShowCart}
       />
+      <InfoProduct />
       {showCart && (
         <CartPage
           deleteDiscount={deleteDiscount}
