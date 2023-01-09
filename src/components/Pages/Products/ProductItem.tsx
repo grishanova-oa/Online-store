@@ -4,14 +4,17 @@ import { IProducts } from '../../../modules/types';
 import { ProductItemInfo } from './ProductItemInfo';
 
 type TypeOfPropsProductItem = {
-  // eslint-disable-next-line react/require-default-props
-  isInCart?: boolean;
   propsProductItem: IProducts;
-  addToCart: (value: IProducts, isInCart: boolean) => void;
+  cartData: IProducts[];
+  addToCart: (value: IProducts, isInCart: boolean) => any;
 };
 
 export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
-  const { isInCart, addToCart, propsProductItem } = props;
+  const { propsProductItem } = props;
+  const { cartData } = props;
+  const { addToCart } = props;
+
+  const isInCart = cartData.includes(propsProductItem);
 
   return (
     <section className="product__item">
@@ -32,15 +35,22 @@ export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
             </div>
           </div>
         </div>
-        <div className="item__button">
-          <button type="button" onClick={() => addToCart(propsProductItem, !isInCart)}>
-            {isInCart ? 'Delete' : 'Add to cart'}
+        <div className="item__buttons">
+          {!isInCart && (
+            <button className="item__button" type="button">
+              ADD TO CART
+            </button>
+          )}
+          {isInCart && (
+            <button className="item__button" type="button">
+              DROP FROM CART
+            </button>
+          )}
+          <button className="item__button" type="button">
+            DETAILS
           </button>
-          <button type="button">Details</button>
         </div>
       </div>
     </section>
   );
 };
-
-export default ProductItem;
