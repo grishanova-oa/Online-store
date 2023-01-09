@@ -1,34 +1,24 @@
-import React, { useState } from 'react';
-import { Filters } from './Filters';
-import { Product } from './Product';
-import { catalog } from '../../../modules/catalog';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Products } from '../Products/Products';
+import { Error404 } from '../Error/Error';
 import { IProducts } from '../../../modules/types';
-import './main.css';
+import classes from './Main.module.css';
 
-type tp = {
-  id: number;
-  name: string;
-};
 interface Imain {
   cartData: IProducts[];
   addToCart: (value: IProducts, isInCart: boolean) => void;
 }
 
 export const Main: React.FC<Imain> = ({ cartData, addToCart }) => {
-  const products: IProducts[] = [...catalog.products];
-
-  const productList: IProducts[] = products.map((e) => e);
-
-  const [propsProductList, setProductList] = useState(productList);
-
   return (
-    <main className="main">
-      <section className="main__content">
-        <Filters />
-        <Product cartData={cartData} addToCart={addToCart} propsProductList={propsProductList} />
-      </section>
-    </main>
+    <BrowserRouter>
+      <main className={classes.main}>
+        <Routes>
+          <Route path="/" element={<Products cartData={cartData} addToCart={addToCart} />} />
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 };
-
-export default Main;

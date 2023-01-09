@@ -35,6 +35,7 @@
   text-align: center;
   border-bottom: 1px solid orange;
   white-space: nowrap;
+  color: aliceblue;
 }
 
 .item__info {
@@ -48,4 +49,22 @@
     border-bottom: 1px solid orange;
     border-right: 1px solid orange;
     padding: 1%;
+}
+
+.item__buttons {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.item__button {
+  background-color: #181a1c;
+  border: 1px solid orange;
+  border-radius: 0.3rem;
+  padding-left: 2%;
+  padding-right: 2%;
+  font-size: 80%;
+  cursor: pointer;
+  color:aliceblue;
 }
