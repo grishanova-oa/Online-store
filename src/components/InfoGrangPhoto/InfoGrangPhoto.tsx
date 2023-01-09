@@ -1,14 +1,13 @@
 import React from 'react';
 import './InfoGrangPhotoStyles.css';
 
-export const InfoGrangPhoto = () => {
+interface IPhoto {
+  url: string;
+}
+export const InfoGrangPhoto = ({ url }: IPhoto) => {
   return (
     <div className="grand-photo">
-      <img
-        src="https://i.dummyjson.com/data/products/1/4.jpg"
-        alt="imagegrand"
-        className="grand-photo__img"
-      />
+      <img src={url} alt="imagegrand" className="grand-photo__img" />
     </div>
   );
 };
