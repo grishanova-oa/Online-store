@@ -3,10 +3,10 @@ import './CartStyles.css';
 
 interface ITotalItemCont {
   totalItemCount: number;
-  changeShowCart: (value: boolean) => void;
+  changePageContent: (newActivePage: string) => void;
 }
-export const Cart = ({ changeShowCart, totalItemCount }: ITotalItemCont) => {
-  const showCart = () => changeShowCart(true);
+export const Cart = ({ changePageContent, totalItemCount }: ITotalItemCont) => {
+  const showCart = () => changePageContent('cart');
 
   return (
     <button className="cart" aria-label="btn-cart" type="button" onClick={showCart}>

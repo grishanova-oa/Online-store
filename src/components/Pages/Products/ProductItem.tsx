@@ -6,14 +6,21 @@ import { ProductItemInfo } from './ProductItemInfo';
 type TypeOfPropsProductItem = {
   propsProductItem: IProducts;
   cartData: IProducts[];
-  addToCart: (value: IProducts, isInCart: boolean) => any;
+  addToCart: (value: IProducts, isInCart: boolean) => void;
+  changePageContent: (newActivePage: string) => void;
+  setActiveProduct: (value: IProducts) => void;
 };
 
 export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
   const { propsProductItem } = props;
   const { cartData } = props;
   const { addToCart } = props;
-
+  const { changePageContent } = props;
+  const { setActiveProduct } = props;
+  const onClick = () => {
+    changePageContent('infoProduct');
+    setActiveProduct(propsProductItem);
+  };
   const isInCart = cartData.includes(propsProductItem);
 
   return (
@@ -37,16 +44,24 @@ export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
         </div>
         <div className="item__buttons">
           {!isInCart && (
-            <button className="item__button" type="button">
+            <button
+              className="item__button"
+              type="button"
+              onClick={() => addToCart(propsProductItem, !isInCart)}
+            >
               ADD TO CART
             </button>
           )}
           {isInCart && (
-            <button className="item__button" type="button">
+            <button
+              className="item__button"
+              type="button"
+              onClick={() => addToCart(propsProductItem, !isInCart)}
+            >
               DROP FROM CART
             </button>
           )}
-          <button className="item__button" type="button">
+          <button className="item__button" type="button" onClick={onClick}>
             DETAILS
           </button>
         </div>

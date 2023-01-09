@@ -1,0 +1,29 @@
+.info-add-to-cart {
+    text-align: center;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add-to-cart__btn{
+    color: #ffebcd;
+    font-size: 42px;
+    text-shadow: 0 0 10px rgb(235, 89, 22), 0 0 20px rgb(255, 149, 0), 0 0 30px rgb(228, 95, 95), 0 0 40px rgb(226, 85, 85);
+}
+.info-cart__btn {
+    padding: 10px 0;
+    font-size: 30px;
+    background: #9a3535;
+    color: #ffebcd;
+    border: 2px solid #ef7d13;
+    border-radius: 5px;
+    width: 100%;
+    /* margin: 10px auto; */
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+.info-cart__btn:hover {
+    color: #ef7d13;
+    transform: scale(1.02);
+}

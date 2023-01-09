@@ -1,0 +1,1 @@
+export { InfoProduct } from './InfoProduct';

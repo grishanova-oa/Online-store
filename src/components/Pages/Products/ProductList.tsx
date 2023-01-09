@@ -10,10 +10,12 @@ type IProductProps = {
   onChangeSort: (sort: string) => void;
   cartData: IProducts[];
   addToCart: (value: IProducts, isInCart: boolean) => void;
+  changePageContent: (newActivePage: string) => void;
+  setActiveProduct: (value: IProducts) => void;
 };
 
 export const ProductList = (props: IProductProps): JSX.Element => {
-  const { productList } = props;
+  const { productList, setActiveProduct, changePageContent } = props;
   const { sortSelect } = props;
   const { onChangeSort } = props;
   const { cartData } = props;
@@ -50,6 +52,8 @@ export const ProductList = (props: IProductProps): JSX.Element => {
           productList.map(
             (propsProductItem: IProducts): JSX.Element => (
               <ProductItem
+                setActiveProduct={setActiveProduct}
+                changePageContent={changePageContent}
                 propsProductItem={propsProductItem}
                 cartData={cartData}
                 addToCart={addToCart}

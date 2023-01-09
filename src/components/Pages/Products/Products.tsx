@@ -10,9 +10,16 @@ import { IProducts, IFilterSelect } from '../../../modules/types';
 interface Imain {
   cartData: IProducts[];
   addToCart: (value: IProducts, isInCart: boolean) => void;
+  changePageContent: (newActivePage: string) => void;
+  setActiveProduct: (value: IProducts) => void;
 }
 
-export const Products: React.FC<Imain> = ({ cartData, addToCart }) => {
+export const Products: React.FC<Imain> = ({
+  cartData,
+  addToCart,
+  setActiveProduct,
+  changePageContent,
+}) => {
   const products: IProducts[] = CSProduct.getProduct();
 
   const CSQuery = new Query();
@@ -100,6 +107,8 @@ export const Products: React.FC<Imain> = ({ cartData, addToCart }) => {
         }}
       />
       <ProductList
+        setActiveProduct={setActiveProduct}
+        changePageContent={changePageContent}
         productList={productsList}
         sortSelect={sortSelect}
         onChangeSort={sortProducts}

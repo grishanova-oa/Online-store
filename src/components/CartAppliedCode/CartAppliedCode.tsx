@@ -12,7 +12,6 @@ interface ICartAppliedCode {
 export const CartAppliedCode = ({ name, deleteDiscount }: ICartAppliedCode) => {
   const deleteSale = () => {
     deleteDiscount(name);
-    console.log(deleteDiscount(name));
   };
   return (
     <div className="applied-code__added">

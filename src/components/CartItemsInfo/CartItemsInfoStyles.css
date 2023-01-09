@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     width: 75%;
+    cursor: pointer;
 }
 .items-info__img {
     width: 150px;
