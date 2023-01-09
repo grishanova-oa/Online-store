@@ -19,12 +19,12 @@ export const App: React.FC = () => {
   const [cartData, setCartData] = useState<IProducts[]>([]);
   const [cartItemsCount, setCartItemsCount] = useState<ICartItemCount>({});
   const [discountList, setCountAppliedDiscount] = useState<string[]>([]);
-  const [showCart, setShowCart] = useState<boolean>(false);
+  const [activePage, setActivePage] = useState('main');
+  const [activeProduct, setActiveProduct] = useState<IProducts | null>(null);
 
-  const changeShowCart = (value: boolean) => {
-    setShowCart(value);
+  const changePageContent = (newActivePage: string) => {
+    setActivePage(newActivePage);
   };
-
   const deleteDiscount = (name: string) => {
     const newDiscountLIst = discountList.filter((item) => name !== item);
     setCountAppliedDiscount(newDiscountLIst);
@@ -74,7 +74,6 @@ export const App: React.FC = () => {
       const filteredCartData = cartData.filter((item: IProducts) => item.id !== id);
       setCartData(filteredCartData);
     }
-
     setCartItemsCount(newCartItemsCount);
     setTotalAmount(newTotalAmount);
   };
@@ -97,15 +96,27 @@ export const App: React.FC = () => {
       removeCountAndAmount(id, price);
     }
   };
-  return (
-    <div className="App">
-      <Header
-        totalItemCount={getTotalItemCount(Object.values(cartItemsCount))}
-        totalAmount={totalAmount}
-        changeShowCart={changeShowCart}
-      />
-      <InfoProduct />
-      {showCart && (
+
+  let pageContent;
+
+  switch (activePage) {
+    case 'main':
+      pageContent = (
+        <Main
+          changePageContent={changePageContent}
+          setActiveProduct={setActiveProduct}
+          cartData={cartData}
+          addToCart={addToCart}
+        />
+      );
+      break;
+    case 'infoProduct':
+      pageContent = (
+        <InfoProduct cartData={cartData} addToCart={addToCart} activeProduct={activeProduct} />
+      );
+      break;
+    case 'cart':
+      pageContent = (
         <CartPage
           deleteDiscount={deleteDiscount}
           discountList={discountList}
@@ -116,8 +127,28 @@ export const App: React.FC = () => {
           onChangeCartCount={onChangeCartCount}
           addDiscount={addDiscount}
         />
-      )}
-      {!showCart && <Main cartData={cartData} addToCart={addToCart} />}
+      );
+      break;
+    default:
+      pageContent = (
+        <Main
+          setActiveProduct={setActiveProduct}
+          changePageContent={changePageContent}
+          cartData={cartData}
+          addToCart={addToCart}
+        />
+      );
+      break;
+  }
+
+  return (
+    <div className="App">
+      <Header
+        totalItemCount={getTotalItemCount(Object.values(cartItemsCount))}
+        totalAmount={totalAmount}
+        changePageContent={changePageContent}
+      />
+      {pageContent}
       <Footer />
     </div>
   );
