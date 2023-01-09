@@ -1,9 +1,5 @@
 import { catalog } from '../../../modules/catalog-products';
-import { IProducts } from '../../../modules/types';
-
-interface IAcc {
-  [key: string]: number;
-}
+import { IProducts, IFilterSelect, IQuery } from '../../../modules/types';
 
 interface IFilter {
   name: string;
@@ -18,13 +14,28 @@ export class CSProduct {
     return products;
   }
 
-  static getProductProperty(productsList: IProducts[], property: keyof IProducts) {
+  static getProductsList(products: IProducts[], query: IQuery) {
+    let filterQuery = query.category.split('↕');
+    let productsList = CSProduct.getProductFilterSelect(products, filterQuery, 'category');
+
+    filterQuery = query.brand.split('↕');
+    productsList = CSProduct.getProductFilterSelect(productsList, filterQuery, 'brand');
+
+    return productsList;
+  }
+
+  static getProductProperty(productsList: IProducts[], property: keyof IProducts, query: string) {
+    const filterQuery = query.split('↕');
     const arr: IFilter[] = [];
     for (let i = 0; i < productsList.length; i += 1) {
       const el = productsList[i][property] as string;
       const found = arr.find((element) => element.name.toUpperCase() === el.toUpperCase());
       if (found === undefined) {
-        arr.push({ name: el, isCheck: false, available: 0, total: 1 });
+        let isCheckFilter = false;
+        if (filterQuery.length > 0 && filterQuery.findIndex((e) => e === el) >= 0) {
+          isCheckFilter = true;
+        }
+        arr.push({ name: el, isCheck: isCheckFilter, available: 0, total: 1 });
       } else {
         found.total += 1;
       }
@@ -50,5 +61,25 @@ export class CSProduct {
     }
 
     return listSort;
+  }
+
+  static getProductFilterSelect(
+    productsList: IProducts[],
+    filterSelect: string[],
+    property: keyof IProducts
+  ) {
+    if (filterSelect.length === 0 || filterSelect[0] === '') {
+      return productsList;
+    }
+    const result: IProducts[] = [];
+    for (let i = 0; i < productsList.length; i += 1) {
+      const filterProp = productsList[i][property] as string;
+      if (
+        filterSelect.findIndex((e) => e.toLocaleUpperCase() === filterProp.toLocaleUpperCase()) >= 0
+      ) {
+        result.push(productsList[i]);
+      }
+    }
+    return result;
   }
 }

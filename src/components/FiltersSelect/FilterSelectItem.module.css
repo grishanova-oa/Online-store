@@ -1,3 +1,49 @@
-.FilterSelect {
-  
+.checkbox__line {
+    color: wheat;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+.checkbox__input {
+  cursor: pointer;
+}
+.checkbox__input:checked {
+  cursor: pointer;
+  height: 1.1rem;
+  width: 1.1rem;
+  accent-color: orange;  
+}
+.checkbox__label_activ {
+  overflow: hidden;
+  padding: 0.3rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  color: #f8cc7b;  
+}
+.checkbox__label_no_activ {
+  overflow: hidden;
+  padding: 0.3rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  color: #968566;
+}
+.checkbox__span_activ {
+  margin-left: auto;
+  padding-left: 0.3rem;
+  /*color: wheat;*/
+  color: #f8cc7b;
+}
+.checkbox__span_no_activ {
+  margin-left: auto;
+  padding-left: 0.3rem;
+  /*color: wheat;*/
+  color: #968566;
+}
+.item__activ {
+  color: #f8cc7b;
+}
+.item__no_activ {
+  color: #968566;
 }
