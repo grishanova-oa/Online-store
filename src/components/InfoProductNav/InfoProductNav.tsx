@@ -1,23 +1,29 @@
 import React from 'react';
 import './InfoProductNavStyles.css';
 
-export const InfoProductNav = () => {
+interface INav {
+  title: string;
+  category: string;
+  brand: string;
+}
+
+export const InfoProductNav = ({ category, brand, title }: INav) => {
   return (
     <div className="path-navigation">
       <a href="№" className="path__link">
-        store
+        Store
       </a>
       &rArr;
       <a href="№" className="path__link">
-        category
+        {category}
       </a>
       &rArr;
       <a href="№" className="path__link">
-        brand
+        {brand}
       </a>
       &rArr;
       <a href="№" className="path__link">
-        title
+        {title}
       </a>
     </div>
   );

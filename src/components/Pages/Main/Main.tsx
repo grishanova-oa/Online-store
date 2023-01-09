@@ -10,22 +10,34 @@ type tp = {
   name: string;
 };
 interface Imain {
+  setActiveProduct: (value: IProducts) => void;
+  changePageContent: (newActivePage: string) => void;
   cartData: IProducts[];
   addToCart: (value: IProducts, isInCart: boolean) => void;
 }
 
-export const Main: React.FC<Imain> = ({ cartData, addToCart }) => {
+export const Main: React.FC<Imain> = ({
+  setActiveProduct,
+  changePageContent,
+  cartData,
+  addToCart,
+}) => {
   const products: IProducts[] = [...catalog.products];
 
   const productList: IProducts[] = products.map((e) => e);
 
   const [propsProductList, setProductList] = useState(productList);
-
   return (
     <main className="main">
       <section className="main__content">
         <Filters />
-        <Product cartData={cartData} addToCart={addToCart} propsProductList={propsProductList} />
+        <Product
+          setActiveProduct={setActiveProduct}
+          changePageContent={changePageContent}
+          cartData={cartData}
+          addToCart={addToCart}
+          propsProductList={propsProductList}
+        />
       </section>
     </main>
   );

@@ -8,10 +8,16 @@ type TypeOfPropsProductItem = {
   isInCart?: boolean;
   propsProductItem: IProducts;
   addToCart: (value: IProducts, isInCart: boolean) => void;
+  changePageContent: (newActivePage: string) => void;
+  setActiveProduct: (value: IProducts) => void;
 };
 
 export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
-  const { isInCart, addToCart, propsProductItem } = props;
+  const { setActiveProduct, changePageContent, isInCart, addToCart, propsProductItem } = props;
+  const onClick = () => {
+    changePageContent('infoProduct');
+    setActiveProduct(propsProductItem);
+  };
 
   return (
     <section className="product__item">
@@ -36,7 +42,9 @@ export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
           <button type="button" onClick={() => addToCart(propsProductItem, !isInCart)}>
             {isInCart ? 'Delete' : 'Add to cart'}
           </button>
-          <button type="button">Details</button>
+          <button type="button" onClick={onClick}>
+            Details
+          </button>
         </div>
       </div>
     </section>

@@ -7,10 +7,12 @@ type IProductProps = {
   cartData: IProducts[];
   propsProductList: IProducts[];
   addToCart: (value: IProducts, isInCart: boolean) => void;
+  changePageContent: (newActivePage: string) => void;
+  setActiveProduct: (value: IProducts) => void;
 };
 
 export const Product = (props: IProductProps): JSX.Element => {
-  const { cartData, addToCart, propsProductList } = props;
+  const { setActiveProduct, changePageContent, cartData, addToCart, propsProductList } = props;
   const getIsInCart = (id: number) => {
     return cartData.find((item) => item.id === id);
   };
@@ -22,10 +24,13 @@ export const Product = (props: IProductProps): JSX.Element => {
         {propsProductList.map(
           (propsProductItem: IProducts): JSX.Element => (
             <ProductItem
+              setActiveProduct={setActiveProduct}
+              changePageContent={changePageContent}
               isInCart={Boolean(getIsInCart(propsProductItem.id))}
               addToCart={addToCart}
               propsProductItem={propsProductItem}
               key={propsProductItem.id}
+              // showProduct={showProduct}
             />
           )
         )}

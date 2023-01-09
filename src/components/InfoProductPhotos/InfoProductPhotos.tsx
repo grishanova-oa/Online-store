@@ -1,19 +1,18 @@
 import React from 'react';
 import './InfoProductPhotosStyles.css';
 
-export const InfoProductPhotos = () => {
+interface IPhoto {
+  images: string[];
+  setActiveSrc: (url: string) => void;
+}
+export const InfoProductPhotos = ({ images, setActiveSrc }: IPhoto) => {
   return (
     <div className="photo-slides">
-      <img
-        src="https://i.dummyjson.com/data/products/1/3.jpg"
-        alt="imagegrand"
-        className="slides__img"
-      />
-      <img
-        src="https://i.dummyjson.com/data/products/1/2.jpg"
-        alt="imagegrand"
-        className="slides__img"
-      />
+      {images.map((url: string) => (
+        <button key={url} type="button" className="slides__img" onClick={() => setActiveSrc(url)}>
+          <img src={url} alt="alt" />
+        </button>
+      ))}
     </div>
   );
 };

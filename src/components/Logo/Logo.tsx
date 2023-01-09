@@ -2,10 +2,10 @@ import React from 'react';
 import './LogoStyles.css';
 
 interface Ilogo {
-  changeShowCart: (value: boolean) => void;
+  changePageContent: (activePage: string) => void;
 }
-export const Logo = ({ changeShowCart }: Ilogo) => {
-  const changeShow = () => changeShowCart(false);
+export const Logo = ({ changePageContent }: Ilogo) => {
+  const changeShow = () => changePageContent('');
   return (
     <button className="logo" aria-label="btn-cart" type="button" onClick={changeShow}>
       <div className="logo__img" />
