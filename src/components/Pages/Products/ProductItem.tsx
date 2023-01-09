@@ -4,20 +4,24 @@ import { IProducts } from '../../../modules/types';
 import { ProductItemInfo } from './ProductItemInfo';
 
 type TypeOfPropsProductItem = {
-  // eslint-disable-next-line react/require-default-props
-  isInCart?: boolean;
   propsProductItem: IProducts;
+  cartData: IProducts[];
   addToCart: (value: IProducts, isInCart: boolean) => void;
   changePageContent: (newActivePage: string) => void;
   setActiveProduct: (value: IProducts) => void;
 };
 
 export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
-  const { setActiveProduct, changePageContent, isInCart, addToCart, propsProductItem } = props;
+  const { propsProductItem } = props;
+  const { cartData } = props;
+  const { addToCart } = props;
+  const { changePageContent } = props;
+  const { setActiveProduct } = props;
   const onClick = () => {
     changePageContent('infoProduct');
     setActiveProduct(propsProductItem);
   };
+  const isInCart = cartData.includes(propsProductItem);
 
   return (
     <section className="product__item">
@@ -38,17 +42,30 @@ export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
             </div>
           </div>
         </div>
-        <div className="item__button">
-          <button type="button" onClick={() => addToCart(propsProductItem, !isInCart)}>
-            {isInCart ? 'Delete' : 'Add to cart'}
-          </button>
-          <button type="button" onClick={onClick}>
-            Details
+        <div className="item__buttons">
+          {!isInCart && (
+            <button
+              className="item__button"
+              type="button"
+              onClick={() => addToCart(propsProductItem, !isInCart)}
+            >
+              ADD TO CART
+            </button>
+          )}
+          {isInCart && (
+            <button
+              className="item__button"
+              type="button"
+              onClick={() => addToCart(propsProductItem, !isInCart)}
+            >
+              DROP FROM CART
+            </button>
+          )}
+          <button className="item__button" type="button" onClick={onClick}>
+            DETAILS
           </button>
         </div>
       </div>
     </section>
   );
 };
-
-export default ProductItem;

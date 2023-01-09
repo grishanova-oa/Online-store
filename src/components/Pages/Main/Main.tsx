@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Filters } from './Filters';
-import { Product } from './Product';
-import { catalog } from '../../../modules/catalog';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Products } from '../Products/Products';
+import { Error404 } from '../Error/Error';
 import { IProducts } from '../../../modules/types';
-import './main.css';
+import classes from './Main.module.css';
+import { catalog } from '../../../modules/catalog';
 
-type tp = {
-  id: number;
-  name: string;
-};
 interface Imain {
   setActiveProduct: (value: IProducts) => void;
   changePageContent: (newActivePage: string) => void;
@@ -17,30 +14,31 @@ interface Imain {
 }
 
 export const Main: React.FC<Imain> = ({
-  setActiveProduct,
-  changePageContent,
   cartData,
   addToCart,
+  setActiveProduct,
+  changePageContent,
 }) => {
-  const products: IProducts[] = [...catalog.products];
-
-  const productList: IProducts[] = products.map((e) => e);
-
-  const [propsProductList, setProductList] = useState(productList);
+  const [propsProductList, setProductList] = useState<IProducts[]>([...catalog.products]);
   return (
-    <main className="main">
-      <section className="main__content">
-        <Filters />
-        <Product
-          setActiveProduct={setActiveProduct}
-          changePageContent={changePageContent}
-          cartData={cartData}
-          addToCart={addToCart}
-          propsProductList={propsProductList}
-        />
-      </section>
-    </main>
+    <BrowserRouter>
+      <main className={classes.main}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Products
+                setActiveProduct={setActiveProduct}
+                changePageContent={changePageContent}
+                cartData={cartData}
+                addToCart={addToCart}
+                // propsProductList={propsProductList}
+              />
+            }
+          />
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 };
-
-export default Main;

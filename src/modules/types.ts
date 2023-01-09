@@ -12,6 +12,11 @@ export interface IProducts {
   images: string[];
 }
 
+export interface ISelect {
+  value: string;
+  name: string;
+}
+
 export interface ICatalog {
   products: IProducts[];
   total: number;
@@ -19,21 +24,25 @@ export interface ICatalog {
   limit: number;
 }
 
-// export type TypeOfProducts = { key: string: T};
+export interface IFilterSelect {
+  name: string;
+  isCheck: boolean;
+  available: number;
+  total: number;
+}
 
-export type TypeOfQuerySelectProduct = {
-  select: string[];
-};
+export interface IElemFilterSelect {
+  title: string;
+  listFilter: IFilterSelect[];
+  onCheckInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 export interface IQuery {
   category: string;
-}
-
-export interface IFilterSelect {
-  title: string;
-  filter: string;
-}
-
-export interface IPropisFilterSelect {
-  propsFilterSelect: IFilterSelect;
+  brand: string;
+  price: string;
+  stock: string;
+  sort: string;
+  search: string;
+  big: string;
 }
