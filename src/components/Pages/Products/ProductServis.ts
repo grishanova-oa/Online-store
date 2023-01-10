@@ -1,5 +1,5 @@
 import { catalog } from '../../../modules/catalog-products';
-import { IProducts, IFilterSelect, IQuery } from '../../../modules/types';
+import { IProducts, IQuery } from '../../../modules/types';
 
 interface IFilter {
   name: string;
