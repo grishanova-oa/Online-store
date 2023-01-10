@@ -19,6 +19,12 @@ export const ProductList = (props: IProductProps): JSX.Element => {
   const { cartData } = props;
   const { addToCart } = props;
 
+  const classSmallVM = (classes.small_v_div, classes.active__mode);
+  // const classSmallVM = classes.small_v_div;
+
+  const arraySmall = Array<JSX.Element>(36).fill(<div className={classSmallVM}>.</div>);
+  const arrayBig = Array<JSX.Element>(16).fill(<div className={classes.big_v_div}>.</div>);
+
   return (
     <section className={classes.product}>
       <div className={classes.product__sort}>
@@ -41,8 +47,8 @@ export const ProductList = (props: IProductProps): JSX.Element => {
           <input type="search" placeholder="Search product" className={classes.SearchInput} />
         </div>
         <div className={classes.ViewMode}>
-          <div className={classes.small_v}>1</div>
-          <div className={classes.big_v}>2</div>
+          <div className={classes.small_v}> {arraySmall.map((e) => e)} </div>
+          <div className={classes.big_v}> {arrayBig.map((e) => e)} </div>
         </div>
       </div>
       <div className={classes.product__list}>

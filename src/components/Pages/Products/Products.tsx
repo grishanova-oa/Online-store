@@ -21,9 +21,7 @@ export const Products: React.FC<Imain> = ({ cartData, addToCart }) => {
 
   CSQuery.getQueryString(searchParams);
 
-  // // let productsList: IProducts[] = products.map((e) => e);
   const [productsList, setProductsList] = useState([...products]);
-
   const [sortSelect, setSortSelect] = useState('');
 
   const sortProducts = (sort: string) => {
@@ -38,7 +36,6 @@ export const Products: React.FC<Imain> = ({ cartData, addToCart }) => {
     const selectItem = filterCategory.find((e) => e.name === event.target.name) as IFilterSelect;
     selectItem.isCheck = event.target.checked;
     CSQuery.setQueryFilter('category', filterCategory);
-    // setFilterCategory([...filterCategory]);
     setSearchParams(CSQuery.setQueryString(searchParams));
   };
 
@@ -49,7 +46,6 @@ export const Products: React.FC<Imain> = ({ cartData, addToCart }) => {
     const selectItem = filterBrand.find((e) => e.name === event.target.name) as IFilterSelect;
     selectItem.isCheck = event.target.checked;
     CSQuery.setQueryFilter('brand', filterBrand);
-    // setFilterBrand([...filterBrand]);
     setSearchParams(CSQuery.setQueryString(searchParams));
   };
 

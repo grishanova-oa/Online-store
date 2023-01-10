@@ -6,7 +6,7 @@ import { ProductItemInfo } from './ProductItemInfo';
 type TypeOfPropsProductItem = {
   propsProductItem: IProducts;
   cartData: IProducts[];
-  addToCart: (value: IProducts, isInCart: boolean) => any;
+  addToCart: (value: IProducts, isInCart: boolean) => void;
 };
 
 export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
@@ -37,12 +37,20 @@ export const ProductItem: React.FC<TypeOfPropsProductItem> = (props) => {
         </div>
         <div className="item__buttons">
           {!isInCart && (
-            <button className="item__button" type="button">
+            <button
+              className="item__button"
+              type="button"
+              onClick={() => addToCart(propsProductItem, !isInCart)}
+            >
               ADD TO CART
             </button>
           )}
           {isInCart && (
-            <button className="item__button" type="button">
+            <button
+              className="item__button"
+              type="button"
+              onClick={() => addToCart(propsProductItem, isInCart)}
+            >
               DROP FROM CART
             </button>
           )}
