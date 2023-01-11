@@ -36,7 +36,7 @@ export const CartDiscount = ({ addDiscount }: ICartDiscount) => {
         onChange={onChange}
       />
       <CartDiscountPromo showDiscount={showDiscount} clickAddDiscount={clickAddDiscount} />
-      <div className="discount__offer">Promo for test: RS, EPM</div>
+      <div className="discount__offer">Promo for test: rs, epm</div>
     </div>
   );
 };
