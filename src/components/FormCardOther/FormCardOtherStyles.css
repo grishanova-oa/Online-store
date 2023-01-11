@@ -1,0 +1,32 @@
+.card__other {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    color: aliceblue;
+    font-size: 26px;
+}
+.card__valid,
+.card__cvv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50%;
+}
+.card__valid input,
+.card__cvv input {
+    font-weight: 700;
+    font-size: 130%;
+    width: 60%;
+    height: 1rem;
+    background: rgb(233,233,202);
+    border: 1px solid orange;
+    border-radius: 0.3rem;
+    outline: none;
+    text-align: center;
+    margin-left: 2%;
+    font-size: 90%;
+    color: #000;
+    font-weight: 700;
+}

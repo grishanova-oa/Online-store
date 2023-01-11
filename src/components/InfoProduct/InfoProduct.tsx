@@ -8,8 +8,9 @@ interface ITypes {
   activeProduct: IProducts | null;
   cartData: IProducts[];
   addToCart: (value: IProducts, isInCart: boolean) => void;
+  setIsShowFormPay: (isOpen: boolean) => void;
 }
-export const InfoProduct = ({ activeProduct, cartData, addToCart }: ITypes) => {
+export const InfoProduct = ({ setIsShowFormPay, activeProduct, cartData, addToCart }: ITypes) => {
   if (!activeProduct) {
     return null;
   }
@@ -21,7 +22,12 @@ export const InfoProduct = ({ activeProduct, cartData, addToCart }: ITypes) => {
         brand={activeProduct.brand}
         title={activeProduct.title}
       />
-      <InfoProductBlock cartData={cartData} addToCart={addToCart} activeProduct={activeProduct} />
+      <InfoProductBlock
+        setIsShowFormPay={setIsShowFormPay}
+        cartData={cartData}
+        addToCart={addToCart}
+        activeProduct={activeProduct}
+      />
     </div>
   );
 };
