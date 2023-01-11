@@ -1,17 +1,15 @@
 import React from 'react';
 import { FilterSelectItem } from './FilterSelectItem';
-import { IFilterSelect, IElemFilterSelect } from '../../modules/types';
+import { IFilterSelect, IElementFilterSelect } from '../../modules/types';
 import classes from './FilterSelect.module.css';
 
 type TypeOfFilterSelect = {
-  filterSelect: IElemFilterSelect;
+  filterSelect: IElementFilterSelect;
 };
 
 export const FilterSelect = (props: TypeOfFilterSelect): JSX.Element => {
   const { filterSelect } = props;
-  const { title } = filterSelect;
-  const { listFilter } = filterSelect;
-  const { onCheckInput } = filterSelect;
+  const { title, listFilter, onChangeSelect } = filterSelect;
 
   return (
     <div className={classes.filter__select}>
@@ -21,7 +19,7 @@ export const FilterSelect = (props: TypeOfFilterSelect): JSX.Element => {
           (filterSelectItem: IFilterSelect): JSX.Element => (
             <FilterSelectItem
               filterSelectItem={filterSelectItem}
-              onChangeInput={onCheckInput}
+              onChangeSelect={onChangeSelect}
               key={filterSelectItem.name}
             />
           )

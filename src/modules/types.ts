@@ -31,13 +31,27 @@ export interface IFilterSelect {
   total: number;
 }
 
-export interface IElemFilterSelect {
+export interface IElementFilterSelect {
   title: string;
   listFilter: IFilterSelect[];
-  onCheckInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeSelect: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface IQuery {
+export interface IFilterRangeValue {
+  // valueFilter: {
+  rangeMin: { index: number; value: number };
+  rangeMax: { index: number; value: number };
+  // };
+}
+
+export interface IFilterRange {
+  title: string;
+  range: { min: number; max: number };
+  valueFilter: IFilterRangeValue;
+  onChangeSlider: (valueInput: number, changeInput: string) => void;
+}
+
+export interface IQuerySearchParam {
   category: string;
   brand: string;
   price: string;
@@ -45,4 +59,19 @@ export interface IQuery {
   sort: string;
   search: string;
   big: string;
+}
+
+export type TypeOfQueryValue = IFilterSelect[] | IFilterRangeValue | string;
+
+export interface IQuery {
+  query: IQuerySearchParam;
+  action: string;
+  getAction(): string;
+  setAction(action: string): void;
+  getQueryString(searchParams: URLSearchParams): void;
+  setQueryString(searchParams: URLSearchParams): URLSearchParams;
+  setQueryFilterSelect(propety: keyof IQuerySearchParam, filterSelect: IFilterSelect[]): void;
+  setQueryFilterRange(propety: keyof IQuerySearchParam, filterRange: IFilterRangeValue): void;
+  setQuerySearch(propety: keyof IQuerySearchParam, valueSearch: string): void;
+  setQuery(propety: keyof IQuerySearchParam, valueQuery: TypeOfQueryValue): void;
 }
