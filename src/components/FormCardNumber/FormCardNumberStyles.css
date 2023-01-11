@@ -1,0 +1,23 @@
+.card__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 7% auto 10%;
+}
+.card__number img {
+    background-color: #fff;
+    width: 10%;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+}
+.card__number input {
+    background: rgb(233,233,202);
+    border: 1px solid orange;
+    border-radius: 0.3rem;
+    outline: none;
+    text-align: center;
+    margin-left: 2%;
+    font-size: 90%;
+    color: #000;
+    font-weight: 700;
+}

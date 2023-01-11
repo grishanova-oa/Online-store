@@ -7,6 +7,7 @@ import { Main } from './components/Pages/Main/Main';
 import { IProducts } from './modules/types';
 import { catalog } from './modules/catalog';
 import { InfoProduct } from './components/InfoProduct';
+import { FormPersonalDetails } from './components/FormPersonalDetails';
 
 interface ICartItemCount {
   [key: string]: number;
@@ -21,6 +22,7 @@ export const App: React.FC = () => {
   const [discountList, setCountAppliedDiscount] = useState<string[]>([]);
   const [activePage, setActivePage] = useState('main');
   const [activeProduct, setActiveProduct] = useState<IProducts | null>(null);
+  const [isShowFormPay, setIsShowFormPay] = useState(false);
 
   const changePageContent = (newActivePage: string) => {
     setActivePage(newActivePage);
@@ -112,7 +114,12 @@ export const App: React.FC = () => {
       break;
     case 'infoProduct':
       pageContent = (
-        <InfoProduct cartData={cartData} addToCart={addToCart} activeProduct={activeProduct} />
+        <InfoProduct
+          setIsShowFormPay={setIsShowFormPay}
+          cartData={cartData}
+          addToCart={addToCart}
+          activeProduct={activeProduct}
+        />
       );
       break;
     case 'cart':
@@ -126,6 +133,7 @@ export const App: React.FC = () => {
           cartItemsCount={cartItemsCount}
           onChangeCartCount={onChangeCartCount}
           addDiscount={addDiscount}
+          setIsShowFormPay={setIsShowFormPay}
         />
       );
       break;
@@ -148,6 +156,7 @@ export const App: React.FC = () => {
         totalAmount={totalAmount}
         changePageContent={changePageContent}
       />
+      {isShowFormPay && <FormPersonalDetails setIsShowFormPay={setIsShowFormPay} />}
       {pageContent}
       <Footer />
     </div>

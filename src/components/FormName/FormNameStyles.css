@@ -1,0 +1,12 @@
+.form-name input {
+    background-color: #181a1c;
+    width: 100%;
+    border: 1px solid orange;
+    color: orange;
+    border-radius: 2rem;
+    padding: 0.4rem;
+    outline: none;
+    font-size: 90%;
+    text-align: center;
+    margin: 2% auto;
+}

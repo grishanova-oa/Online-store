@@ -6,9 +6,16 @@ interface IAddToCart {
   price: number;
   isInCart: boolean;
   activeProduct: IProducts;
+  setIsShowFormPay: (isOpen: boolean) => void;
   addToCart: (value: IProducts, isInCart: boolean) => void;
 }
-export const InfoAddToCart = ({ price, isInCart, addToCart, activeProduct }: IAddToCart) => {
+export const InfoAddToCart = ({
+  setIsShowFormPay,
+  price,
+  isInCart,
+  addToCart,
+  activeProduct,
+}: IAddToCart) => {
   return (
     <div className="info-add-to-cart">
       <div className="add-to-cart__btn">
@@ -21,7 +28,12 @@ export const InfoAddToCart = ({ price, isInCart, addToCart, activeProduct }: IAd
         >
           {isInCart ? 'Delete' : 'Add to cart'}
         </button>
-        <button className="info-cart__btn" aria-label="btn-info" type="button">
+        <button
+          className="info-cart__btn"
+          aria-label="btn-info"
+          type="button"
+          onClick={() => setIsShowFormPay(true)}
+        >
           Buy now
         </button>
       </div>
