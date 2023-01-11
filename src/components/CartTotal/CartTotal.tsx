@@ -12,6 +12,7 @@ interface ITotalAmount {
   totalAmount: number;
   totalItemCount: number;
   addDiscount: (value: string) => void;
+  setIsShowFormPay: (isOpen: boolean) => void;
 }
 export const CartTotal = ({
   deleteDiscount,
@@ -19,6 +20,7 @@ export const CartTotal = ({
   addDiscount,
   totalItemCount,
   totalAmount,
+  setIsShowFormPay,
 }: ITotalAmount) => {
   const count = (totalAmount / 10) * +(10 - discountList.length);
   const isDiscount = Boolean(discountList.length);
@@ -35,7 +37,7 @@ export const CartTotal = ({
         <CartAppliedDiscount discountList={discountList} deleteDiscount={deleteDiscount} />
       )}
       <CartDiscount addDiscount={addDiscount} />
-      <CartBuyNow />
+      <CartBuyNow setIsShowFormPay={setIsShowFormPay} />
     </div>
   );
 };

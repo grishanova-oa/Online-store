@@ -3,8 +3,8 @@ import { CartDiscountPromo } from '../CartDiscountPromo';
 import './CartDiscountStyles.css';
 
 const discountPrice: { [key: string]: string } = {
-  rs: 'RS - 10%',
-  epm: 'EPM - 10%',
+  rs: 'rs - 10%',
+  epm: 'epm - 10%',
 };
 
 interface ICartDiscount {

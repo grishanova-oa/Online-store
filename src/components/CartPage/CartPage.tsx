@@ -15,6 +15,7 @@ interface ICartData {
   thumbnail: string;
 }
 interface ICartItems {
+  setIsShowFormPay: (isOpen: boolean) => void;
   deleteDiscount: (value: string) => void;
   discountList: string[];
   totalAmount: number;
@@ -25,6 +26,7 @@ interface ICartItems {
   addDiscount: (value: string) => void;
 }
 export const CartPage = ({
+  setIsShowFormPay,
   deleteDiscount,
   discountList,
   totalItemCount,
@@ -49,6 +51,7 @@ export const CartPage = ({
             totalItemCount={totalItemCount}
             totalAmount={totalAmount}
             discountList={discountList}
+            setIsShowFormPay={setIsShowFormPay}
           />
         </>
       ) : (
