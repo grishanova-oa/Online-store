@@ -1,0 +1,9 @@
+.form-card {
+    margin: 0 auto;
+    border-radius: 10px;
+    background: rgb(0,9,36);
+    background: linear-gradient(90deg,rgb(0,9,36) 6%,rgb(9,9,121) 34%,rgb(0,212,255) 100%);
+    width: 350px;
+    height: 150px;
+    padding: 20px 10px;
+}

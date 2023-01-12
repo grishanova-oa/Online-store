@@ -1,0 +1,1 @@
+export { FormPersonalDetails } from './FormPersonalDetails';

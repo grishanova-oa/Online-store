@@ -11,8 +11,14 @@ interface ITypes {
   activeProduct: IProducts;
   cartData: IProducts[];
   addToCart: (value: IProducts, isInCart: boolean) => void;
+  setIsShowFormPay: (isOpen: boolean) => void;
 }
-export const InfoProductBlock = ({ activeProduct, cartData, addToCart }: ITypes) => {
+export const InfoProductBlock = ({
+  setIsShowFormPay,
+  activeProduct,
+  cartData,
+  addToCart,
+}: ITypes) => {
   const getIsInCart = (id: number) => {
     return cartData.find((item) => item.id === id);
   };
@@ -38,6 +44,7 @@ export const InfoProductBlock = ({ activeProduct, cartData, addToCart }: ITypes)
           brand={activeProduct.brand}
         />
         <InfoAddToCart
+          setIsShowFormPay={setIsShowFormPay}
           isInCart={Boolean(getIsInCart(activeProduct.id))}
           addToCart={addToCart}
           activeProduct={activeProduct}

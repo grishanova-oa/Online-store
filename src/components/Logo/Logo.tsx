@@ -1,10 +1,10 @@
 import React from 'react';
 import './LogoStyles.css';
 
-interface Ilogo {
+interface ILogo {
   changePageContent: (activePage: string) => void;
 }
-export const Logo = ({ changePageContent }: Ilogo) => {
+export const Logo = ({ changePageContent }: ILogo) => {
   const changeShow = () => changePageContent('');
   return (
     <button className="logo" aria-label="btn-cart" type="button" onClick={changeShow}>

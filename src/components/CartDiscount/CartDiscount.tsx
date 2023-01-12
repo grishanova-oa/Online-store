@@ -3,8 +3,8 @@ import { CartDiscountPromo } from '../CartDiscountPromo';
 import './CartDiscountStyles.css';
 
 const discountPrice: { [key: string]: string } = {
-  rs: 'RS - 10%',
-  epm: 'EPM - 10%',
+  rs: 'rs - 10%',
+  epm: 'epm - 10%',
 };
 
 interface ICartDiscount {
@@ -36,7 +36,7 @@ export const CartDiscount = ({ addDiscount }: ICartDiscount) => {
         onChange={onChange}
       />
       <CartDiscountPromo showDiscount={showDiscount} clickAddDiscount={clickAddDiscount} />
-      <div className="discount__offer">Promo for test: RS, EPM</div>
+      <div className="discount__offer">Promo for test: rs, epm</div>
     </div>
   );
 };

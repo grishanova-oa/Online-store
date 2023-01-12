@@ -5,7 +5,6 @@ import { Error404 } from '../Error/Error';
 import { Query } from '../Products/QueryServis';
 import { IProducts } from '../../../modules/types';
 import classes from './Main.module.css';
-// import { catalog } from '../../../modules/catalog';
 
 interface Imain {
   setActiveProduct: (value: IProducts) => void;
@@ -27,7 +26,7 @@ export const Main: React.FC<Imain> = ({
       <main className={classes.main}>
         <Routes>
           <Route
-            path="/"
+            path="/online-store"
             element={
               <Products
                 setActiveProduct={setActiveProduct}
