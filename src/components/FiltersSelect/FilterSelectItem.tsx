@@ -4,12 +4,12 @@ import classes from './FilterSelectItem.module.css';
 
 type TypeOfFilterSelectItem = {
   filterSelectItem: IFilterSelect;
-  onChangeInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeSelect: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const FilterSelectItem = (props: TypeOfFilterSelectItem): JSX.Element => {
   const { filterSelectItem } = props;
-  const { onChangeInput } = props;
+  const { onChangeSelect } = props;
 
   const classLabel =
     filterSelectItem.available !== 0
@@ -29,7 +29,7 @@ export const FilterSelectItem = (props: TypeOfFilterSelectItem): JSX.Element => 
         name={filterSelectItem.name}
         type="checkbox"
         checked={filterSelectItem.isCheck}
-        onChange={onChangeInput}
+        onChange={onChangeSelect}
       />
       <label className={classLabel} htmlFor={filterSelectItem.name}>
         {filterSelectItem.name}
