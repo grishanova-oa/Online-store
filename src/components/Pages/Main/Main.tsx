@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Products } from '../Products/Products';
 import { Error404 } from '../Error/Error';
+import { Query } from '../Products/QueryServis';
 import { IProducts } from '../../../modules/types';
 import classes from './Main.module.css';
 
@@ -18,6 +19,8 @@ export const Main: React.FC<Imain> = ({
   setActiveProduct,
   changePageContent,
 }) => {
+  // const [propsProductList, setProductList] = useState<IProducts[]>([...catalog.products]);
+  const CSQuery = new Query();
   return (
     <BrowserRouter>
       <main className={classes.main}>
@@ -30,6 +33,8 @@ export const Main: React.FC<Imain> = ({
                 changePageContent={changePageContent}
                 cartData={cartData}
                 addToCart={addToCart}
+                CSQuery={CSQuery}
+                // propsProductList={propsProductList}
               />
             }
           />

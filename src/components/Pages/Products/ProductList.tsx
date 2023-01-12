@@ -12,6 +12,8 @@ type IProductProps = {
   addToCart: (value: IProducts, isInCart: boolean) => void;
   changePageContent: (newActivePage: string) => void;
   setActiveProduct: (value: IProducts) => void;
+  valueSearch: string;
+  onChangeSearchProduct: (value: string) => void;
 };
 
 export const ProductList = (props: IProductProps): JSX.Element => {
@@ -20,6 +22,7 @@ export const ProductList = (props: IProductProps): JSX.Element => {
   const { onChangeSort } = props;
   const { cartData } = props;
   const { addToCart } = props;
+  const { valueSearch, onChangeSearchProduct } = props;
 
   return (
     <section className={classes.product}>
@@ -40,7 +43,13 @@ export const ProductList = (props: IProductProps): JSX.Element => {
         </div>
         <div className={classes.Stat}> Found: {productList.length} </div>
         <div className={classes.SearchBar}>
-          <input type="search" placeholder="Search product" className={classes.SearchInput} />
+          <input
+            type="search"
+            value={valueSearch}
+            onChange={(e) => onChangeSearchProduct(e.target.value)}
+            placeholder="Search product"
+            className={classes.SearchInput}
+          />
         </div>
         <div className={classes.ViewMode}>
           <div className={classes.small_v}>1</div>

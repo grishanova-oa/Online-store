@@ -1,16 +1,18 @@
 import React from 'react';
+import { IFilterButton } from '../../modules/types';
 import './filterButton.css';
 
-interface IFilterButton {
-  title: string;
-}
+type TypeOfFilterButton = {
+  filterButton: IFilterButton;
+};
 
-const FilterButton: React.FC<IFilterButton> = ({ title }) => {
+export const FilterButton = (props: TypeOfFilterButton): JSX.Element => {
+  const { filterButton } = props;
+  const { onClickButton } = filterButton;
+
   return (
-    <button className="filter__button" type="button">
-      {title}
+    <button className="filter__button" type="button" onClick={onClickButton}>
+      {filterButton.title}
     </button>
   );
 };
-
-export default FilterButton;
