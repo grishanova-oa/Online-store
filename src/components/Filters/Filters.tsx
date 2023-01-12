@@ -1,11 +1,13 @@
 import React from 'react';
-import FilterButton from '../FiltersSelect/FilterButton';
+import { FilterButton } from './FilterButton';
 import { FilterSelect } from '../FiltersSelect/FilterSelect';
 import { FilterSlider } from '../FilterSlider/FilterSlider';
-import { IElementFilterSelect, IFilterRange } from '../../modules/types';
+import { IElementFilterSelect, IFilterRange, IFilterButton } from '../../modules/types';
 import classes from './Filters.module.css';
 
 type TypeOfFilter = {
+  buttonReset: IFilterButton;
+  buttonCopyLink: IFilterButton;
   filterCategory: IElementFilterSelect;
   filterBrand: IElementFilterSelect;
   filterPrice: IFilterRange;
@@ -13,6 +15,8 @@ type TypeOfFilter = {
 };
 
 export const Filters = (props: TypeOfFilter): JSX.Element => {
+  const { buttonReset } = props;
+  const { buttonCopyLink } = props;
   const { filterCategory } = props;
   const { filterBrand } = props;
   const { filterPrice } = props;
@@ -21,13 +25,13 @@ export const Filters = (props: TypeOfFilter): JSX.Element => {
   return (
     <section className={classes.filters}>
       <div className={classes.filters__reset}>
-        <FilterButton title="Reset Filters" />
-        <FilterButton title="Copy Link" />
+        <FilterButton filterButton={buttonReset} />
+        <FilterButton filterButton={buttonCopyLink} />
       </div>
       <FilterSelect filterSelect={filterCategory} />
       <FilterSelect filterSelect={filterBrand} />
-      <FilterSlider filterSlider={filterPrice} prefics="€" />
-      <FilterSlider filterSlider={filterStock} prefics="" />
+      <FilterSlider filterSlider={filterPrice} />
+      <FilterSlider filterSlider={filterStock} />
     </section>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CSProduct } from './ProductServis';
-// import { Query } from './QueryServis';
 import { Filters } from '../../Filters/Filters';
 import { ProductList } from './ProductList';
 import classes from './Product.module.css';
@@ -25,7 +24,6 @@ export const Products: React.FC<Imain> = ({
   const products: IProducts[] = CSProduct.getProduct();
   // const CSQuery = new Query();
 
-  let activeSearchParams = 'null';
   const [searchParams, setSearchParams] = useSearchParams();
 
   CSQuery.getQueryString(searchParams);
@@ -75,57 +73,18 @@ export const Products: React.FC<Imain> = ({
     rangeMin: { index: 0, value: priceAmount[0] },
     rangeMax: { index: priceAmount.length - 1, value: priceAmount[priceAmount.length - 1] },
   });
-  //
   const onChangePrice = (indexInput: number, changeInput: string) => {
-    let priceValue = priceFilter;
-    // if (changeInput === 'min') {
-    console.log(changeInput);
-    console.log(indexInput);
-    console.log(priceFilter);
+    const priceValue = priceFilter;
     if (changeInput === 'min') {
-      if (priceFilter.rangeMax.index < indexInput) {
-        priceValue = {
-          rangeMin: priceFilter.rangeMin,
-          rangeMax: {
-            index: indexInput,
-            value: priceAmount[indexInput],
-          },
-        };
-      } else {
-        priceValue = {
-          rangeMin: {
-            index: indexInput,
-            value: priceAmount[indexInput],
-          },
-          rangeMax: priceFilter.rangeMax,
-        };
-      }
-    } else if (priceFilter.rangeMin.index > indexInput) {
-      priceValue = {
-        rangeMin: {
-          index: indexInput,
-          value: priceAmount[indexInput],
-        },
-        rangeMax: priceFilter.rangeMax,
-      };
+      priceValue.rangeMin.index = indexInput;
+      priceValue.rangeMin.value = priceAmount[indexInput];
     } else {
-      priceValue = {
-        rangeMin: priceFilter.rangeMin,
-        rangeMax: {
-          index: indexInput,
-          value: priceAmount[indexInput],
-        },
-      };
+      priceValue.rangeMax.index = indexInput;
+      priceValue.rangeMax.value = priceAmount[indexInput];
     }
-    console.log(priceValue);
-    // console.log(activeSearchParams);
     CSQuery.setQuery('price', priceValue);
-    // activeSearchParams = 'price';
-    // console.log(activeSearchParams);
-    setSearchParams(CSQuery.setQueryString(searchParams));
     setPriceFilter(priceValue);
-
-    // setPriceFilter(priceValue);
+    setSearchParams(CSQuery.setQueryString(searchParams));
   };
 
   //-----------------------------------------------------------------------------
@@ -135,47 +94,18 @@ export const Products: React.FC<Imain> = ({
     rangeMin: { index: 0, value: stockAmount[0] },
     rangeMax: { index: stockAmount.length - 1, value: stockAmount[stockAmount.length - 1] },
   });
-  //
   const onChangeStock = (indexInput: number, changeInput: string) => {
-    let stockValue = stockFilter;
+    const stockValue = stockFilter;
     if (changeInput === 'min') {
-      if (stockFilter.rangeMax.index < indexInput) {
-        stockValue = {
-          rangeMin: stockFilter.rangeMin,
-          rangeMax: {
-            index: indexInput,
-            value: stockAmount[indexInput],
-          },
-        };
-      } else {
-        stockValue = {
-          rangeMin: {
-            index: indexInput,
-            value: stockAmount[indexInput],
-          },
-          rangeMax: stockFilter.rangeMax,
-        };
-      }
-    } else if (stockFilter.rangeMin.index > indexInput) {
-      stockValue = {
-        rangeMin: {
-          index: indexInput,
-          value: stockAmount[indexInput],
-        },
-        rangeMax: stockFilter.rangeMax,
-      };
+      stockValue.rangeMin.index = indexInput;
+      stockValue.rangeMin.value = stockAmount[indexInput];
     } else {
-      stockValue = {
-        rangeMin: stockFilter.rangeMin,
-        rangeMax: {
-          index: indexInput,
-          value: stockAmount[indexInput],
-        },
-      };
+      stockValue.rangeMax.index = indexInput;
+      stockValue.rangeMax.value = stockAmount[indexInput];
     }
     CSQuery.setQuery('stock', stockValue);
-    setSearchParams(CSQuery.setQueryString(searchParams));
     setStockFilter(stockValue);
+    setSearchParams(CSQuery.setQueryString(searchParams));
   };
 
   //-----------------------------------------------------------------------------
@@ -183,7 +113,26 @@ export const Products: React.FC<Imain> = ({
   const [searchProduct, setSearchProduct] = useState(CSQuery.query.search);
   const onChangeSearchProduct = (searchValue: string) => {
     CSQuery.setQuery('search', searchValue);
-    activeSearchParams = 'search';
+    setSearchProduct(searchValue);
+    setSearchParams(CSQuery.setQueryString(searchParams));
+  };
+
+  //-----------------------------------------------------------------------------
+  //
+  const onClickButtonReset = () => {
+    for (let i = 0; i < filterCategory.length; i += 1) {
+      filterCategory[i].isCheck = false;
+    }
+    setFilterCategory([...filterCategory]);
+
+    for (let i = 0; i < filterBrand.length; i += 1) {
+      filterBrand[i].isCheck = false;
+    }
+    setFilterBrand([...filterBrand]);
+
+    setSearchProduct('');
+
+    CSQuery.setQueryReset();
     setSearchParams(CSQuery.setQueryString(searchParams));
   };
 
@@ -218,51 +167,48 @@ export const Products: React.FC<Imain> = ({
     }
     setFilterBrand([...filterBrand]);
 
-    //
-    //
-
     // Устанавливаем фильтр по Price
     if (CSQuery.action !== 'price') {
-      let priceValue = {
+      const priceValue = {
         rangeMin: { index: 0, value: 0 },
         rangeMax: { index: priceAmount.length - 1, value: Number.POSITIVE_INFINITY },
       };
       if (listProduct.length !== 0) {
         const priceAmountList = CSProduct.getAmountProperty(listProduct, 'price');
-        const priceMinIndex = priceAmount.findIndex((price) => price === priceAmountList[0]);
-        const priceMinValue = priceAmountList[0];
-        const priceMaxIndex = priceAmount.findIndex(
+        const rangeMinIndex = priceAmount.findIndex((price) => price === priceAmountList[0]);
+        const rangeMinValue = priceAmountList[0];
+        const rangeMaxIndex = priceAmount.findIndex(
           (price) => price === priceAmountList[priceAmountList.length - 1]
         );
-        const priceMaxValue = priceAmountList[priceAmountList.length - 1];
-        priceValue = {
-          rangeMin: { index: priceMinIndex, value: priceMinValue },
-          rangeMax: { index: priceMaxIndex, value: priceMaxValue },
-        };
+        const rangeMaxValue = priceAmountList[priceAmountList.length - 1];
+        priceValue.rangeMin.index = rangeMinIndex;
+        priceValue.rangeMin.value = rangeMinValue;
+        priceValue.rangeMax.index = rangeMaxIndex;
+        priceValue.rangeMax.value = rangeMaxValue;
       }
       setPriceFilter(priceValue);
     }
 
     // Устанавливаем фильтр по Stock
     if (CSQuery.action !== 'stock') {
-      let stockValue = {
+      const stockValue = {
         rangeMin: { index: 0, value: 0 },
         rangeMax: { index: stockAmount.length - 1, value: Number.POSITIVE_INFINITY },
       };
       if (listProduct.length !== 0) {
         const stockAmountList = CSProduct.getAmountProperty(listProduct, 'stock');
-        const stockMinIndex = stockAmount.findIndex((stock) => stock === stockAmountList[0]);
-        const stockMinValue = stockAmountList[0];
-        const stockMaxIndex = stockAmount.findIndex(
+        const rangeMinIndex = stockAmount.findIndex((stock) => stock === stockAmountList[0]);
+        const rangeMinValue = stockAmountList[0];
+        const rangeMaxIndex = stockAmount.findIndex(
           (stock) => stock === stockAmountList[stockAmountList.length - 1]
         );
-        const stockMaxValue = stockAmountList[stockAmountList.length - 1];
-        stockValue = {
-          rangeMin: { index: stockMinIndex, value: stockMinValue },
-          rangeMax: { index: stockMaxIndex, value: stockMaxValue },
-        };
+        const rangeMaxValue = stockAmountList[stockAmountList.length - 1];
+        stockValue.rangeMin.index = rangeMinIndex;
+        stockValue.rangeMin.value = rangeMinValue;
+        stockValue.rangeMax.index = rangeMaxIndex;
+        stockValue.rangeMax.value = rangeMaxValue;
       }
-      setPriceFilter(stockValue);
+      setStockFilter(stockValue);
     }
 
     setProductsList(listProduct);
@@ -271,6 +217,8 @@ export const Products: React.FC<Imain> = ({
   return (
     <section className={classes.products}>
       <Filters
+        buttonReset={{ title: 'Reset Filters', onClickButton: onClickButtonReset }}
+        buttonCopyLink={{ title: 'Copy Link', onClickButton: onClickButtonReset }}
         filterCategory={{
           title: 'Category',
           listFilter: filterCategory,
@@ -283,12 +231,14 @@ export const Products: React.FC<Imain> = ({
         }}
         filterPrice={{
           title: 'Price',
+          prefix: '€',
           range: { min: 0, max: priceAmount.length - 1 },
           valueFilter: priceFilter,
           onChangeSlider: onChangePrice,
         }}
         filterStock={{
           title: 'Stock',
+          prefix: '',
           range: { min: 0, max: stockAmount.length - 1 },
           valueFilter: stockFilter,
           onChangeSlider: onChangeStock,

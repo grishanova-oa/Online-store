@@ -72,11 +72,13 @@ export class Query {
   //-----------------------------------------------------------------------------
   //
   public setQueryFilterRange(propety: keyof IQuerySearchParam, filterRange: IFilterRangeValue) {
-    this.query[propety] = ''.concat(
-      String(filterRange.rangeMin.value),
-      '↕',
-      String(filterRange.rangeMax.value)
-    );
+    let rangeMin = filterRange.rangeMin.value;
+    let rangeMax = filterRange.rangeMax.value;
+    if (rangeMin > rangeMax) {
+      rangeMin = filterRange.rangeMax.value;
+      rangeMax = filterRange.rangeMin.value;
+    }
+    this.query[propety] = ''.concat(String(rangeMin), '↕', String(rangeMax));
   }
 
   //-----------------------------------------------------------------------------
@@ -85,9 +87,18 @@ export class Query {
     this.query[propety] = valueSearch;
   }
 
+  public setQueryReset() {
+    this.action = '';
+    const keysQuery = Object.keys(this.query);
+    for (let i = 0; i < keysQuery.length; i += 1) {
+      const property = keysQuery[i] as keyof IQuerySearchParam;
+      this.query[property] = '';
+    }
+  }
+
   //-----------------------------------------------------------------------------
   //
-  public setQuery(propety: keyof IQuerySearchParam, valueQuery: TypeOfQueryValue) {
+  public setQuery(propety: keyof IQuerySearchParam | string, valueQuery?: TypeOfQueryValue) {
     this.setAction(propety);
 
     switch (propety) {
@@ -116,7 +127,9 @@ export class Query {
 
       case 'big':
         break;
+
       default:
+        this.setQueryReset();
     }
   }
 }

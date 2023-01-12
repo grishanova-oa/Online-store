@@ -45,11 +45,21 @@ export class CSProduct {
   //-----------------------------------------------------------------------------
   // Получение списка товаров отсортированного по фильтрам:
   static getProductsList(products: IProducts[], query: IQuerySearchParam) {
+    // category
     let filterQuery: string[] | string = query.category.split('↕');
     let productsList = CSProduct.getProductFilterSelect(products, filterQuery, 'category');
 
+    // brand
     filterQuery = query.brand.split('↕');
     productsList = CSProduct.getProductFilterSelect(productsList, filterQuery, 'brand');
+
+    // price
+    filterQuery = query.price.split('↕');
+    productsList = CSProduct.getProductFilterRange(productsList, filterQuery, 'price');
+
+    // stock
+    filterQuery = query.stock.split('↕');
+    productsList = CSProduct.getProductFilterRange(productsList, filterQuery, 'stock');
 
     filterQuery = query.search;
     productsList = CSProduct.getProductFilterSearch(productsList, filterQuery);
@@ -80,6 +90,43 @@ export class CSProduct {
         listProduct.push(productsList[i]);
       }
     }
+
+    return listProduct;
+  }
+
+  //-----------------------------------------------------------------------------
+  // Фильтр: Range
+  static getProductFilterRange(
+    productsList: IProducts[],
+    filterRange: string[],
+    property: keyof IProducts
+  ) {
+    if (productsList === undefined) return productsList;
+    if (productsList.length === 0) return productsList;
+
+    if (filterRange.length === 0 || filterRange[0] === '') {
+      return productsList;
+    }
+
+    // const listProduct: IProducts[] = [];
+    let rangeMin = 0;
+    let rangeMax = productsList[productsList.length - 1][property];
+    if (filterRange.length === 1) {
+      rangeMin = parseInt(filterRange[0], 10);
+      rangeMax = rangeMin;
+    } else {
+      rangeMin = parseInt(filterRange[0], 10);
+      rangeMax = parseInt(filterRange[1], 10);
+      if (rangeMin > rangeMax) {
+        rangeMin = parseInt(filterRange[1], 10);
+        rangeMax = parseInt(filterRange[0], 10);
+      }
+    }
+
+    const listProduct = productsList.filter((product) => {
+      if (product[property] >= rangeMin && product[property] <= rangeMax) return true;
+      return false;
+    });
 
     return listProduct;
   }

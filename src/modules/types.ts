@@ -46,6 +46,7 @@ export interface IFilterRangeValue {
 
 export interface IFilterRange {
   title: string;
+  prefix: string;
   range: { min: number; max: number };
   valueFilter: IFilterRangeValue;
   onChangeSlider: (valueInput: number, changeInput: string) => void;
@@ -74,4 +75,10 @@ export interface IQuery {
   setQueryFilterRange(propety: keyof IQuerySearchParam, filterRange: IFilterRangeValue): void;
   setQuerySearch(propety: keyof IQuerySearchParam, valueSearch: string): void;
   setQuery(propety: keyof IQuerySearchParam, valueQuery: TypeOfQueryValue): void;
+  setQueryReset(): void;
+}
+
+export interface IFilterButton {
+  title: string;
+  onClickButton: () => void;
 }
