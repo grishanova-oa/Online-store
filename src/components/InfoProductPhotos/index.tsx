@@ -1,0 +1,1 @@
+export { InfoProductPhotos } from './InfoProductPhotos';

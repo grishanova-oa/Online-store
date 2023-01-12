@@ -1,0 +1,22 @@
+.applied-code__added {
+    color: #ffebcd;
+    text-align: center;
+    border-bottom: 1px solid #ef7d13;
+    padding: 3px;
+}
+.applied-code__btn {
+    border-radius: 10%;
+    /* padding: px 10px; */
+    color: #ffebcd;
+    border: 1px solid #ef7d13;
+    cursor: pointer;
+    margin-left: 10px;
+    text-align: center;
+    width: 65px;
+    height: 35px;
+    background-color: rgb(24, 26, 28, 0.8);
+    font-family: Philosopher,sans-serif;
+    font-size: 14px;
+    overflow: auto;
+    text-transform: uppercase;
+}

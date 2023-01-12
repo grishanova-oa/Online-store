@@ -1,0 +1,24 @@
+.photo-slides {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    gap: 10px;
+    padding-right: 20px;
+
+}
+.slides__img {
+
+    width: 80%;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.slides__img:hover {
+    transform: scale(1.05);
+}
+.slides__img img {
+    border-radius: 20px;
+    width: 180px;
+    height: 100px;
+
+}

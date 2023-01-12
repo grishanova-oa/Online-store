@@ -1,0 +1,1 @@
+export { CartItemsInfo } from './CartItemsInfo';

@@ -1,0 +1,13 @@
+.total-price {
+    display: flex;
+    align-items: flex-end;
+}
+.total-price__title {
+    padding-right: 10px;
+    font-size: 22px;
+    color: #ef7d13;
+}
+.total-price__sum {
+    color: #ffebcd; 
+    font-size: 26px;
+}

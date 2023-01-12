@@ -1,0 +1,25 @@
+.logo{
+    padding: 10px 0 10px 20px;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    transition: .3s;
+}
+.logo__img {
+    background: url('/src/assets/logo-online-store.png') center no-repeat;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    margin-right: 5px;
+}
+.logo:hover {
+    transform: scale(1.1);
+}
+.logo__text{
+    color: #ef7d13;
+    font-size: 28px;
+    transition: 0.3s;
+}
+.logo__text:hover {
+    color:yellow;
+}

@@ -1,0 +1,30 @@
+.cart {
+    display: flex;
+    align-content: center;
+    margin: 10px 30px 10px;
+    background: url('../../assets/cart.png') center no-repeat;
+    width: 55px;
+    height: 55px;
+    background-size: cover;
+    cursor: pointer;
+}
+/* .cart:hover {
+    border-radius: 50%;
+    border: 1px solid #ef7d13;
+    padding: 3px;
+} */
+.count-product {
+    color: #fff;
+    margin: 0 auto;
+    font-size: 20px;
+    background-color: #3e9694;
+    border-radius: 22px;
+    height: 22px;
+    width: 22px;
+    text-align: center;
+    opacity: 0.9;
+    transition: .3s;
+}
+.count-product:hover {
+    transform: scale(1.2);
+}

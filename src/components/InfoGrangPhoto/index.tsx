@@ -1,0 +1,1 @@
+export { InfoGrangPhoto } from './InfoGrangPhoto';

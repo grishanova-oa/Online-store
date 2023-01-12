@@ -1,0 +1,1 @@
+export { InfoProductBlock } from './InfoProductBlock';
