@@ -22,21 +22,14 @@ export const Products: React.FC<Imain> = ({
   CSQuery,
 }) => {
   const products: IProducts[] = CSProduct.getProduct();
-  // const CSQuery = new Query();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   CSQuery.getQueryString(searchParams);
 
-  // // let productsList: IProducts[] = products.map((e) => e);
   const [productsList, setProductsList] = useState([...products]);
 
-  const [sortSelect, setSortSelect] = useState('');
-
-  const sortProducts = (sort: string) => {
-    setSortSelect(sort);
-    setProductsList(CSProduct.sortProductsList(productsList, sort));
-  };
+  console.log('123');
 
   //-----------------------------------------------------------------------------
   // 'category'
@@ -46,8 +39,6 @@ export const Products: React.FC<Imain> = ({
   const changeFilterSelectCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectItem = filterCategory.find((e) => e.name === event.target.name) as IFilterSelect;
     selectItem.isCheck = event.target.checked;
-    // CSQuery.setQueryFilterSelect('category', filterCategory);
-    // CSQuery.setAction('category');
     CSQuery.setQuery('category', filterCategory);
     setSearchParams(CSQuery.setQueryString(searchParams));
   };
@@ -60,8 +51,6 @@ export const Products: React.FC<Imain> = ({
   const changeFilterSelectBrand = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectItem = filterBrand.find((e) => e.name === event.target.name) as IFilterSelect;
     selectItem.isCheck = event.target.checked;
-    // CSQuery.setQueryFilterSelect('brand', filterBrand);
-    // setFilterBrand([...filterBrand]);
     CSQuery.setQuery('brand', filterBrand);
     setSearchParams(CSQuery.setQueryString(searchParams));
   };
@@ -78,6 +67,10 @@ export const Products: React.FC<Imain> = ({
     if (changeInput === 'min') {
       priceValue.rangeMin.index = indexInput;
       priceValue.rangeMin.value = priceAmount[indexInput];
+      if (priceValue.rangeMin.value === Number.POSITIVE_INFINITY) {
+        priceValue.rangeMax.index = priceAmount.length - 1;
+        priceValue.rangeMax.value = priceAmount[priceAmount.length - 1];
+      }
     } else {
       priceValue.rangeMax.index = indexInput;
       priceValue.rangeMax.value = priceAmount[indexInput];
@@ -99,6 +92,10 @@ export const Products: React.FC<Imain> = ({
     if (changeInput === 'min') {
       stockValue.rangeMin.index = indexInput;
       stockValue.rangeMin.value = stockAmount[indexInput];
+      if (stockValue.rangeMin.value === Number.POSITIVE_INFINITY) {
+        stockValue.rangeMax.index = priceAmount.length - 1;
+        stockValue.rangeMax.value = priceAmount[priceAmount.length - 1];
+      }
     } else {
       stockValue.rangeMax.index = indexInput;
       stockValue.rangeMax.value = stockAmount[indexInput];
@@ -118,7 +115,15 @@ export const Products: React.FC<Imain> = ({
   };
 
   //-----------------------------------------------------------------------------
-  //
+  // 'sort' - Сортировка
+  const [sortSelect, setSortSelect] = useState('');
+  const sortProducts = (sort: string) => {
+    setSortSelect(sort);
+    setProductsList(CSProduct.sortProductsList(productsList, sort));
+  };
+
+  //-----------------------------------------------------------------------------
+  // Сброс фильтров
   const onClickButtonReset = () => {
     for (let i = 0; i < filterCategory.length; i += 1) {
       filterCategory[i].isCheck = false;
